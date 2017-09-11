@@ -1,0 +1,434 @@
+2017-09-11 12:55:31,657 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 12:55:31,723 - MaGa_Line_GW - INFO - Start server 9000 port 
+2017-09-11 12:55:31,837 - MaGa_Line_GW - INFO - Start server 9001 port 
+2017-09-11 12:55:31,839 - MaGa_Line_GW - INFO - Start server 9002 port 
+2017-09-11 12:55:31,840 - MaGa_Line_GW - INFO - Start server 9003 port 
+2017-09-11 12:55:31,842 - MaGa_Line_GW - INFO - Start server 9004 port 
+2017-09-11 12:55:31,844 - MaGa_Line_GW - INFO - Start server 9005 port 
+2017-09-11 12:55:31,845 - MaGa_Line_GW - INFO - Start server 9006 port 
+2017-09-11 12:55:31,846 - MaGa_Line_GW - INFO - Start server 9007 port 
+2017-09-11 12:55:31,848 - MaGa_Line_GW - INFO - Start server 9008 port 
+2017-09-11 12:55:31,849 - MaGa_Line_GW - INFO - Start server 9009 port 
+2017-09-11 13:24:46,907 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 13:25:19,884 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 13:25:19,885 - MaGa_Line_GW - INFO - Start server 9000 port 
+2017-09-11 13:25:19,948 - MaGa_Line_GW - INFO - Start server 9001 port 
+2017-09-11 13:25:19,949 - MaGa_Line_GW - INFO - Start server 9002 port 
+2017-09-11 13:25:19,951 - MaGa_Line_GW - INFO - Start server 9003 port 
+2017-09-11 13:25:19,952 - MaGa_Line_GW - INFO - Start server 9004 port 
+2017-09-11 13:25:19,953 - MaGa_Line_GW - INFO - Start server 9005 port 
+2017-09-11 13:25:19,954 - MaGa_Line_GW - INFO - Start server 9006 port 
+2017-09-11 13:25:19,955 - MaGa_Line_GW - INFO - Start server 9007 port 
+2017-09-11 13:25:19,957 - MaGa_Line_GW - INFO - Start server 9008 port 
+2017-09-11 13:25:19,958 - MaGa_Line_GW - INFO - Start server 9009 port 
+2017-09-11 13:33:08,635 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 13:33:08,635 - MaGa_Line_GW - INFO - Start server 9001 port 
+2017-09-11 13:49:59,074 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 13:49:59,074 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 13:51:57,960 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 13:51:57,960 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 13:59:43,412 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 13:59:43,413 - MaGa_Line_GW - INFO - Request body: {"events":[{"replyToken":"00000000000000000000000000000000","type":"message","timestamp":1451617200000,"source":{"type":"user","userId":"Udeadbeefdeadbeefdeadbeefdeadbeef"},"message":{"id":"100001","type":"text","text":"Hello,world"}},{"replyToken":"ffffffffffffffffffffffffffffffff","type":"message","timestamp":1451617210000,"source":{"type":"user","userId":"Udeadbeefdeadbeefdeadbeefdeadbeef"},"message":{"id":"100002","type":"sticker","packageId":"1","stickerId":"1"}}]}
+2017-09-11 13:59:43,462 - MaGa_Line_GW - INFO - Line get sticker :1 Line_id = Udeadbeefdeadbeefdeadbeefdeadbeef
+2017-09-11 14:00:40,196 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:00:40,196 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"fc1dbca51b15451a8d7b5884ef561d73","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505109639383,"message":{"type":"text","id":"6679317865792","text":"123"}}]}
+2017-09-11 14:00:46,276 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:00:46,277 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"cd464f6c30ae4a23b6a8e341b70ddb8f","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505109645556,"message":{"type":"text","id":"6679318227807","text":"eeeee"}}]}
+2017-09-11 14:00:48,214 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:00:48,214 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"69d663dcf2a146519e17f6db8f9dd06f","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505109648046,"message":{"type":"text","id":"6679318378037","text":"9999"}}]}
+2017-09-11 14:19:21,127 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:19:21,127 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:19:26,279 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:19:26,279 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"6191cc42399c4e1b831d2210fc631ae3","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505110765446,"message":{"type":"text","id":"6679384965168","text":"qweqwe"}}]}
+2017-09-11 14:19:28,461 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:19:28,461 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"413073fb762146f0be1f735d007ab675","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505110767894,"message":{"type":"text","id":"6679385111512","text":"wwwww"}}]}
+2017-09-11 14:20:04,046 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:20:04,046 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d41f5547b090469e84c5a71aa5e4cada","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505110803335,"message":{"type":"text","id":"6679387207090","text":"qweqwe"}}]}
+2017-09-11 14:20:06,141 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:20:06,141 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"7bdc77f9be774b3ab2c9e0ac9bb2469e","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505110805564,"message":{"type":"text","id":"6679387336567","text":"eeeee"}}]}
+2017-09-11 14:30:29,225 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:30:29,225 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:30:34,806 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:30:34,806 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"50a14e6fed14470eadc7293a7eccb4ab","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505111433866,"message":{"type":"text","id":"6679424347764","text":"qweqqwq"}}]}
+2017-09-11 14:32:56,800 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:32:56,800 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:33:09,639 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:33:09,640 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b9eae0ede5314496bab0705c519711fe","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505111588474,"message":{"type":"text","id":"6679433429972","text":"qweqweqw"}}]}
+2017-09-11 14:33:11,912 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:33:11,912 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"fff401d95a7046da9d60f30ce118d6e8","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505111591044,"message":{"type":"text","id":"6679433581349","text":"qwwwwww"}}]}
+2017-09-11 14:33:13,177 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:33:13,177 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"3376dd3de77e4b85b40d45f22e57e8d8","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505111592993,"message":{"type":"text","id":"6679433695406","text":"2222213"}}]}
+2017-09-11 14:37:34,917 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:37:34,917 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:37:39,796 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:37:39,796 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b352cb1e49824a4796aac42e197faaa5","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505111858826,"message":{"type":"text","id":"6679449368678","text":"qwewqeqeqe"}}]}
+2017-09-11 14:37:41,650 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:37:41,651 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"dd63018e2f734db8a877dd07d89c26c9","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505111861043,"message":{"type":"text","id":"6679449503946","text":"fffefe"}}]}
+2017-09-11 14:41:15,041 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:41:15,041 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:41:20,515 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:41:20,515 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"f74236063f5e433cad1803286b53e5d3","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112079467,"message":{"type":"text","id":"6679462405069","text":"qwefqeeqf"}}]}
+2017-09-11 14:42:27,957 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:42:27,982 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:42:32,203 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:42:32,204 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"9a9abd731ef24203bd18c3767d55e88d","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112151018,"message":{"type":"text","id":"6679466650171","text":"qweqweqe"}}]}
+2017-09-11 14:42:34,125 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:42:34,126 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ec5634af08624501a480a38334ab0654","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112152923,"message":{"type":"text","id":"6679466761506","text":"dwqd"}}]}
+2017-09-11 14:50:00,873 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:50:00,899 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:50:05,980 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:50:05,981 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"69b6ab7b058f42d0b0006d7337e7b7d0","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112605184,"message":{"type":"text","id":"6679493587093","text":"qweqweqwe"}}]}
+2017-09-11 14:50:07,887 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:50:07,888 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"24c837e2c0dc4c8bb3d81002ed6731f3","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112607103,"message":{"type":"text","id":"6679493701626","text":"eefvwf"}}]}
+2017-09-11 14:50:10,029 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:50:10,029 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"03e64fc2b59249719dd161371c14d08f","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112609386,"message":{"type":"text","id":"6679493837490","text":"scxcwd"}}]}
+2017-09-11 14:55:16,182 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:55:16,207 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:55:32,367 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:55:32,367 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"e39e8638577c4e1abf3e022af5ff7e63","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505112931476,"message":{"type":"text","id":"6679513125750","text":"qweqeqffqfe"}}]}
+2017-09-11 14:56:26,850 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:56:26,851 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:56:46,022 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:56:46,022 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"764180070f234906bbd76b50811686f5","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113005281,"message":{"type":"text","id":"6679517568943","text":"qweqweqwe"}}]}
+2017-09-11 14:56:50,128 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:56:50,128 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"f594fbd91aff46b9aa3ec97fefd41053","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113009417,"message":{"type":"text","id":"6679517818686","text":"ffefeffef"}}]}
+2017-09-11 14:57:15,766 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 14:57:15,766 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 14:57:24,134 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 14:57:24,135 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"022674535dec4a7f9006d5c1534b5826","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113043585,"message":{"type":"text","id":"6679519874812","text":"qweqweqef"}}]}
+2017-09-11 15:02:25,675 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:02:25,675 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:02:31,917 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:02:31,918 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"6b35afb94db14c5ebe1976ea6535d463","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113350986,"message":{"type":"text","id":"6679538523040","text":"qeqweqweff"}}]}
+2017-09-11 15:02:34,459 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:02:34,459 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"c7c52477e8654237a31fb2c26bc291f8","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113353844,"message":{"type":"text","id":"6679538699788","text":"eecwv"}}]}
+2017-09-11 15:03:14,110 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:03:14,111 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:03:22,753 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:03:22,754 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"799a01d42fba4000a036fd77315f4767","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113402013,"message":{"type":"text","id":"6679541654049","text":"dqwdscd"}}]}
+2017-09-11 15:03:24,906 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:03:24,906 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"a6708197cb8746a89e6822df274dd56a","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113404355,"message":{"type":"text","id":"6679541795426","text":"dwd"}}]}
+2017-09-11 15:03:57,657 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:03:57,658 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"e01bb2943e62471381d36c9a18139c1c","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113436716,"message":{"type":"text","id":"6679543783620","text":"火球"}}]}
+2017-09-11 15:05:26,352 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:05:26,352 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:05:33,668 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:05:33,668 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"e8da4e5dacde4568ae986ef784a9e69a","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113532810,"message":{"type":"text","id":"6679549698431","text":"火球"}}]}
+2017-09-11 15:05:54,396 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:05:54,396 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:06:11,555 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:06:11,556 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d500e5e6315c4456aad6d9653720b0d2","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113570796,"message":{"type":"text","id":"6679552044065","text":"火球"}}]}
+2017-09-11 15:06:53,545 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:06:53,545 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:07:34,291 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:07:34,291 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"59fbc2b8e6664188947743e5eecb62f6","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113652953,"message":{"type":"text","id":"6679557114338","text":"data[0]['img']"}}]}
+2017-09-11 15:07:37,492 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:07:37,492 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"e58d368dd03a478398ec388d0dd012a1","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113656736,"message":{"type":"text","id":"6679557352448","text":"火球"}}]}
+2017-09-11 15:08:27,761 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:08:27,761 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:08:43,419 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:08:43,420 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"436af4afc14a4749ae769aef6fe2e913","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113722524,"message":{"type":"text","id":"6679561421060","text":"火球"}}]}
+2017-09-11 15:09:06,663 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:09:06,663 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:09:20,531 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:09:20,531 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"acb0a7eb66b147c4a25eab07b6252ef0","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113759424,"message":{"type":"text","id":"6679563704256","text":"火球"}}]}
+2017-09-11 15:10:34,802 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:10:34,802 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:10:45,134 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:10:45,134 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"255b59aa9b91419eb7b88211ca1083c9","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113844344,"message":{"type":"text","id":"6679568966655","text":"火球"}}]}
+2017-09-11 15:11:08,378 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:11:08,378 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:11:18,429 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:11:18,430 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"4f4db99b09e847198fe2adcd07c36f13","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113877824,"message":{"type":"text","id":"6679571039775","text":"火球"}}]}
+2017-09-11 15:12:46,575 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:12:46,575 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:12:52,471 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:12:52,471 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"2c9e24615a54483db41a0d06205a3704","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505113971895,"message":{"type":"text","id":"6679576853784","text":"火球"}}]}
+2017-09-11 15:14:38,016 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:14:38,016 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:14:45,571 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:14:45,571 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"24c9f799d4c44bf9b945f08dbe1cd33e","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114084797,"message":{"type":"text","id":"6679583824009","text":"火球"}}]}
+2017-09-11 15:15:19,713 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:15:19,713 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:15:25,403 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:15:25,403 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b7d4fc9cc6494c21a29a590d3c4a879a","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114124836,"message":{"type":"text","id":"6679586305116","text":"火球"}}]}
+2017-09-11 15:16:17,093 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:16:17,093 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:16:23,711 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:16:23,711 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"82e3364f8a9c415db9587e233fbcb460","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114182548,"message":{"type":"text","id":"6679589892357","text":"火球"}}]}
+2017-09-11 15:16:29,363 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:16:29,363 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b4f172bbec234a0b8fd62af29c7fcf09","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114188799,"message":{"type":"text","id":"6679590275894","text":"瘟疫"}}]}
+2017-09-11 15:16:54,326 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:16:54,326 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"07b12217271345d1bbff4f9ca665a4aa","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114213446,"message":{"type":"text","id":"6679591802138","text":"星隕"}}]}
+2017-09-11 15:17:38,718 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:17:38,746 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"13c3a0084ac94e01bb58ac8c4ec615ee","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114257926,"message":{"type":"text","id":"6679594549682","text":"小鬼"}}]}
+2017-09-11 15:18:15,077 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:18:15,078 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:18:20,802 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:18:20,802 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b287f6d5589642cfbb15f79a9d93de73","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114300197,"message":{"type":"text","id":"6679597162345","text":"小鬼"}}]}
+2017-09-11 15:18:48,219 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:18:48,250 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"64e0de815b1b4f06ae6b3c005236a492","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114327454,"message":{"type":"text","id":"6679598841494","text":"火球"}}]}
+2017-09-11 15:18:56,615 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:18:56,615 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"7b0492368f2f479a836bd437871764aa","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114335846,"message":{"type":"text","id":"6679599360068","text":"小鬼爆破"}}]}
+2017-09-11 15:19:03,895 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:19:03,895 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"a4c4dab40d38437f82f606b92bc71fbd","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114343294,"message":{"type":"text","id":"6679599816105","text":"星隕"}}]}
+2017-09-11 15:21:06,899 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:21:06,900 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:21:49,045 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:21:49,045 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:22:01,271 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:22:01,271 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"7c2455641ddf483a82dbf7d31b34c95c","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114520504,"message":{"type":"text","id":"6679610870117","text":"星隕"}}]}
+2017-09-11 15:24:12,933 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:24:12,934 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:24:22,497 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:24:22,497 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"4d85c30dc59744c2bcd07f44a28a372a","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114661696,"message":{"type":"text","id":"6679619647038","text":"新允"}}]}
+2017-09-11 15:24:41,816 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:24:41,816 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"85adfb6a2a2445d4ab1b621eccf92aa6","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114680974,"message":{"type":"text","id":"6679620839784","text":"啟動"}}]}
+2017-09-11 15:24:49,682 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:24:49,683 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1ad5bd1b1e1944a89c6b73e966a6a1fa","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114689095,"message":{"type":"text","id":"6679621354983","text":"成長"}}]}
+2017-09-11 15:25:40,500 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:25:40,501 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"349b326b42de46ffadb6e4b2f50e9a08","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114739731,"message":{"type":"text","id":"6679624512949","text":"法力"}}]}
+2017-09-11 15:27:21,931 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:27:21,932 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:27:27,575 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:27:27,576 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"955d9444d0fd46f7a5dd7e9a39b27f9b","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114846559,"message":{"type":"text","id":"6679631137336","text":"法力"}}]}
+2017-09-11 15:28:32,100 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:28:32,101 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:28:45,671 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:28:45,672 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"322ab8f63bf84fa5adeebd2bc2888b8e","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114924765,"message":{"type":"text","id":"6679636022079","text":"法力"}}]}
+2017-09-11 15:29:29,252 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:29:29,252 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:29:36,886 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:29:36,886 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"044d01fa43904a22af6e2ed337c6c1d3","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505114975904,"message":{"type":"text","id":"6679639206795","text":"法力"}}]}
+2017-09-11 15:31:29,825 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:31:29,826 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:31:34,938 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:31:34,938 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ea50333159894c9ca209a0a8eda33251","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115094173,"message":{"type":"text","id":"6679646603312","text":"法力"}}]}
+2017-09-11 15:32:00,445 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:32:00,446 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"e54e89ddccc641c8ab2feba3c53b0f86","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115119466,"message":{"type":"text","id":"6679648198018","text":"法力龍慢"}}]}
+2017-09-11 15:32:18,140 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:32:18,140 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d13b062a8fe24404bcbe28e3b4df8e44","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115137464,"message":{"type":"text","id":"6679649331177","text":"啟動"}}]}
+2017-09-11 15:32:26,146 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:32:26,147 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1c077b9deca94305b9976520d773f21e","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115145234,"message":{"type":"text","id":"6679649825732","text":"wdqd"}}]}
+2017-09-11 15:35:42,107 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:35:42,134 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:35:50,944 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:35:50,944 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"3e4233ca9a554a0993211dfeed52ed25","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115349546,"message":{"type":"text","id":"6679662743660","text":"火球"}}]}
+2017-09-11 15:38:51,106 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:38:51,134 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"797b64aeaadf494c852eb4c348c877ab","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115530422,"message":{"type":"text","id":"6679674187141","text":"wdqd"}}]}
+2017-09-11 15:39:04,061 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:39:04,061 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"8a904757da884e3ab5ef523b179b3e60","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115543484,"message":{"type":"text","id":"6679675007747","text":"炎爆"}}]}
+2017-09-11 15:39:33,822 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:39:33,822 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:39:43,708 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:39:43,709 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1e2c4e8c788b414b94efe54e4b17b277","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115582933,"message":{"type":"text","id":"6679677489798","text":"冰甲"}}]}
+2017-09-11 15:39:52,191 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:39:52,192 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"86a0f86ad5aa4e0e8a6f9549c33ebfc7","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115591446,"message":{"type":"text","id":"6679678025141","text":"冰霜"}}]}
+2017-09-11 15:43:33,336 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:43:33,336 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:43:49,340 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:43:49,340 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"3718003d60114b74bdbcecdefc788883","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115828264,"message":{"type":"text","id":"6679692970550","text":"冰霜"}}]}
+2017-09-11 15:45:00,075 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:45:00,075 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:45:08,068 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:45:08,068 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"f4b1a0f8057146ff84161210b8e1548e","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115907054,"message":{"type":"text","id":"6679697944710","text":"冰霜"}}]}
+2017-09-11 15:45:52,556 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:45:52,556 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:46:01,519 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:46:01,519 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"21731ecaa0884e1cac8eb25cbc699a07","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505115960650,"message":{"type":"text","id":"6679701354042","text":"冰霜"}}]}
+2017-09-11 15:47:45,429 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:47:45,429 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:47:50,302 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:47:50,303 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"98d646006e96405bab38112df398d799","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116069395,"message":{"type":"text","id":"6679708315381","text":"123"}}]}
+2017-09-11 15:47:56,060 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:47:56,061 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ec15f45dd4604b8ba53bc112c47bec83","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116075076,"message":{"type":"text","id":"6679708679610","text":"@小鬼"}}]}
+2017-09-11 15:48:14,631 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:48:14,631 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ec80f804a4eb4ae698a9d9b96f1a97e9","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116093925,"message":{"type":"text","id":"6679709882821","text":"@小鬼爆破"}}]}
+2017-09-11 15:48:29,663 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:48:29,663 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b43c612bc437430db004776d19f98388","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116108847,"message":{"type":"text","id":"6679710835060","text":"@法力"}}]}
+2017-09-11 15:48:58,674 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:48:58,674 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1cc5b07b986c428b9717e27493762c31","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116138034,"message":{"type":"text","id":"6679712695149","text":"@冰霜"}}]}
+2017-09-11 15:49:35,435 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 15:49:35,435 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 15:49:53,823 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:49:53,824 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"71840912b5be44beb81f86ee90310bdf","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116192933,"message":{"type":"text","id":"6679716204057","text":"@法力"}}]}
+2017-09-11 15:50:44,451 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:50:44,451 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b665db8598b24c8c9f2a462b4d7d8d8d","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116243657,"message":{"type":"text","id":"6679719484749","text":"hi"}}]}
+2017-09-11 15:50:45,391 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:50:45,391 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"470f2c31512c4ac88f3a767a02d528a0","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505116245197,"message":{"type":"text","id":"6679719583356","text":"hi"}}]}
+2017-09-11 15:51:34,304 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:51:34,304 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"join","replyToken":"ab33c2f4bb574d878b8c3ade5d3a4d3b","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","type":"room"},"timestamp":1505116274332}]}
+2017-09-11 15:51:34,954 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:51:34,954 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d1a0788f14244ba6b9d5ff4794617769","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116293493,"message":{"type":"text","id":"6679722706335","text":"初版完成了"}}]}
+2017-09-11 15:51:46,784 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:51:46,785 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"46ef053fe8be40f2b2653840bde32c5d","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116306025,"message":{"type":"text","id":"6679723516880","text":"@暴風"}}]}
+2017-09-11 15:52:11,104 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:52:11,105 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"444d8d778e16473eb26ebefc8ceb48a5","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116330224,"message":{"type":"text","id":"6679725091631","text":"有些圖出不來是api的問題"}}]}
+2017-09-11 15:52:54,076 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:52:54,077 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"cd413c9cddbc4f4a8925f149a2254df4","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116373488,"message":{"type":"text","id":"6679727888207","text":"本來要把code佈到aws上的,但太麻煩,要申請dns和ssl憑證= ="}}]}
+2017-09-11 15:53:38,154 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:53:38,154 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"59da1d99abf543c2bf6c7b1cd49d8b0d","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116417366,"message":{"type":"text","id":"6679730736362","text":"現在run在我local端,所以我電腦關了就不會回了"}}]}
+2017-09-11 15:54:06,209 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:54:06,209 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"be828f6114ba44b9a25ab1fa372fba81","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116445612,"message":{"type":"text","id":"6679732566975","text":"@野獸"}}]}
+2017-09-11 15:54:34,591 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:54:34,614 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"27b482091e38487ba5d8d38585ff9e61","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116473804,"message":{"type":"text","id":"6679734395757","text":"@劍龍"}}]}
+2017-09-11 15:55:03,973 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:55:04,027 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"a539791bce1444f6a1159c7bceb6c148","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116503404,"message":{"type":"text","id":"6679736323165","text":"@劍龍騎術"}}]}
+2017-09-11 15:55:19,950 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:55:19,972 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"bde58019bedf4fea863ae7c45d7ff002","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116519383,"message":{"type":"text","id":"6679737362239","text":"... api真爛"}}]}
+2017-09-11 15:55:24,168 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:55:24,169 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"4db72a850ee64081bcfcf610ca3a1842","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116523956,"message":{"type":"text","id":"6679737662296","text":"@大法師"}}]}
+2017-09-11 15:58:54,076 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:58:54,085 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"6bc2828a0aae4d46aa71494cb38b1e9b","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116733293,"message":{"type":"text","id":"6679751324768","text":"@阿薩斯"}}]}
+2017-09-11 15:59:55,653 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:59:55,654 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"eff3168643b0400dbb88a1f5964db48e","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116795076,"message":{"type":"text","id":"6679755370123","text":"@巫妖王"}}]}
+2017-09-11 15:59:59,650 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 15:59:59,651 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ba66c9e52b8644e691162ce9020a26f0","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116799102,"message":{"type":"text","id":"6679755630576","text":"等等"}}]}
+2017-09-11 16:00:14,328 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:00:14,329 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"155229a0aa5641bd8ba8d32ee1867841","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116813756,"message":{"type":"text","id":"6679756596764","text":"因為我run在local端"}}]}
+2017-09-11 16:00:30,705 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:00:30,725 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"02ae6b7060fe4adab7fe1c400aaba54d","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116829962,"message":{"type":"text","id":"6679757665630","text":"我要把你ip加入白名單"}}]}
+2017-09-11 16:00:51,409 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:00:51,437 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"fa54c833532b4082a9b12d0cd949f21a","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116850837,"message":{"type":"text","id":"6679759048583","text":"再試一次"}}]}
+2017-09-11 16:01:12,843 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:01:12,843 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"427288ebc29f4caaa89bb28666f8122c","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116871971,"message":{"type":"text","id":"6679760451853","text":"你怎麼知道我ip"}}]}
+2017-09-11 16:01:15,907 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:01:15,908 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"2d60b4c791aa4c99873438878d99b317","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116875732,"message":{"type":"text","id":"6679760698933","text":"@巫妖王"}}]}
+2017-09-11 16:01:22,926 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:01:22,926 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"6c9010652c9b4abf90f5c01332f83482","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116879107,"message":{"type":"text","id":"6679760925348","text":"我這有log"}}]}
+2017-09-11 16:01:43,402 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:01:43,402 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"0c470a7973264b2a8a90194cd6cfc8ef","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116902833,"message":{"type":"text","id":"6679762501565","text":"@The Lich King"}}]}
+2017-09-11 16:02:04,245 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:02:04,245 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"dffe4d68f42c41f689f61db7e7b07842","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116923649,"message":{"type":"text","id":"6679763896526","text":".."}}]}
+2017-09-11 16:02:10,547 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:02:10,548 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"462fd8587035402cb4e7222efc734a5b","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116929974,"message":{"type":"text","id":"6679764316936","text":"@南海船長"}}]}
+2017-09-11 16:02:12,283 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:02:12,283 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"c32301ff83ab4abeacad2adc8a8fa392","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116931716,"message":{"type":"text","id":"6679764435157","text":"感覺ip好像一直跳"}}]}
+2017-09-11 16:02:24,247 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:02:24,247 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ee4ddb981d0c4edd9fa6b1bfc213eefa","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116943479,"message":{"type":"text","id":"6679765217421","text":"."}}]}
+2017-09-11 16:02:42,535 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:02:42,536 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"aced4ca24b59441bbcf3198ad73ba639","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505116961969,"message":{"type":"text","id":"6679766456582","text":"我是用筆電"}}]}
+2017-09-11 16:02:47,739 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:02:47,739 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ea38841773454ea1a98ec7ad152b57e2","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505116967187,"message":{"type":"text","id":"6679766803607","text":"你開手機網路分享給電腦"}}]}
+2017-09-11 16:04:11,564 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:04:11,594 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"647452264b684bcbbd097d7c73f95dee","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117050798,"message":{"type":"text","id":"6679772424753","text":"連手機分享熱點了"}}]}
+2017-09-11 16:04:19,734 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:04:19,734 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"c8205817941c48c5ac6067c544542786","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117059131,"message":{"type":"text","id":"6679772993328","text":"http://dir.twseo.org/ip-check.php"}}]}
+2017-09-11 16:04:20,154 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:04:20,154 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"0990d8a349b242f1b15e4784108b2b7e","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117059351,"message":{"type":"text","id":"6679773008958","text":"用這個查"}},{"type":"message","replyToken":"198e28c9f97e4a538140edbab65251d5","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117059930,"message":{"type":"text","id":"6679773042545","text":"@狼騎兵"}}]}
+2017-09-11 16:04:28,209 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:04:28,210 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"de69ba43e32e4580afba726f3780f811","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117067341,"message":{"type":"text","id":"6679773545069","text":"有了"}}]}
+2017-09-11 16:04:30,263 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:04:30,263 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"0e4e4156d67f43efb019abae7626c005","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117070037,"message":{"type":"text","id":"6679773724957","text":"＠＠"}}]}
+2017-09-11 16:04:38,018 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:04:38,018 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"298e48ec994d4ba1ae0e77a5d40bd65f","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117077461,"message":{"type":"text","id":"6679774222596","text":"@巫妖王"}}]}
+2017-09-11 16:05:02,068 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:05:02,068 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"c240135ba947426fa6745b1a2a315289","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117101295,"message":{"type":"text","id":"6679775829172","text":"什麼情況= ="}}]}
+2017-09-11 16:05:04,642 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:05:04,642 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"7c8741bfa77643f99276c0b22e728cb0","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117104456,"message":{"type":"text","id":"6679776039256","text":"那網站很多圖都顯示不出來"}}]}
+2017-09-11 16:05:06,645 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:05:06,645 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b196887c525a44b2b497160cfc00cbe5","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117106458,"message":{"type":"text","id":"6679776174454","text":"api"}}]}
+2017-09-11 16:05:31,566 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:05:31,588 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"aeef602bcbf546e1b172b45af05bb7ba","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117130995,"message":{"type":"text","id":"6679777826593","text":"可是怎麼彈好幾次對話"}}]}
+2017-09-11 16:05:48,041 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:05:48,042 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d4fb10b6734543dca900d6933d1742ac","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117147465,"message":{"type":"text","id":"6679778939230","text":"我最多搜尋五筆"}}]}
+2017-09-11 16:05:57,333 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:05:57,334 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"7c897c660120479686f8568481510d72","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117156780,"message":{"type":"text","id":"6679779565472","text":"line api 的限制"}}]}
+2017-09-11 16:06:12,805 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:06:12,806 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"0a34becdad9d4b8db8da45c97d674193","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117172207,"message":{"type":"text","id":"6679780604591","text":"@龍漫"}}]}
+2017-09-11 16:06:23,435 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:06:23,435 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"5012ca3eb5914f80a2b483fb7554e0be","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117182366,"message":{"type":"text","id":"6679781293442","text":"@龍鰻"}}]}
+2017-09-11 16:06:37,039 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:06:37,069 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1d329fb1823245b9924385fc626d573d","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117196468,"message":{"type":"text","id":"6679782242408","text":"@死亡"}}]}
+2017-09-11 16:07:00,049 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:07:00,050 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"2279df2fd4794416b9f52931246f9ce5","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117219497,"message":{"type":"text","id":"6679783798575","text":"@魚人"}}]}
+2017-09-11 16:07:03,225 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:07:03,226 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"f8d08b57630c4fbaa66c04c715ea5be8","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117222631,"message":{"type":"text","id":"6679784010070","text":"真的有點爛 我找時間換api網站"}}]}
+2017-09-11 16:07:15,147 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:07:15,147 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"70ebd75fed8648849ca43ac95d52f471","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117234574,"message":{"type":"text","id":"6679784818017","text":"呃"}}]}
+2017-09-11 16:07:29,284 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:07:29,285 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"61d0696c3d9044a5bda4b068d2a12c33","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117248731,"message":{"type":"text","id":"6679785768682","text":"有那麼多爐石的api喔"}}]}
+2017-09-11 16:07:40,032 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:07:40,033 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"cc0843bd97eb4ff09b4c18482dad4ce4","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117259286,"message":{"type":"text","id":"6679786490212","text":"我有看到另一個"}}]}
+2017-09-11 16:08:34,642 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:08:34,677 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"bfe7302cdb9f484dbf35e9f98d237cc5","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117313761,"message":{"type":"text","id":"6679790169764","text":"還是我改成只回一筆+文字"}}]}
+2017-09-11 16:08:40,971 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:08:40,971 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"5e22b33a38e742a3aa138659d4a12c6b","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117320377,"message":{"type":"text","id":"6679790615038","text":"至少能看到文字"}}]}
+2017-09-11 16:10:09,687 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:10:09,716 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"4c36925060e74201b9e2fe4cfd48d35a","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117408874,"message":{"type":"text","id":"6679796599759","text":"嗯"}}]}
+2017-09-11 16:11:23,318 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:11:23,318 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:11:32,958 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:11:32,959 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"f2e83c9f5f0f4a2eb7db9dab01151b86","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117491978,"message":{"type":"text","id":"6679802240129","text":"@法力龍慢"}}]}
+2017-09-11 16:11:44,445 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:11:44,445 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"a7ec3e90095e46ca999eaa1aedebeeff","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117503868,"message":{"type":"text","id":"6679803048133","text":"@火球"}}]}
+2017-09-11 16:12:28,022 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:12:28,023 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:12:35,332 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:12:35,332 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"9d05c06bf49943ed86bc734480e3941c","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117554558,"message":{"type":"text","id":"6679806484909","text":"@火球"}}]}
+2017-09-11 16:12:55,997 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:12:55,997 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:13:03,100 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:13:03,100 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d01fe20025734a70a72792f0d2e5459a","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117582509,"message":{"type":"text","id":"6679808379066","text":"@火球"}}]}
+2017-09-11 16:14:40,467 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:14:40,467 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:14:53,523 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:14:53,523 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"19cdd0154dfc41f196c1f0155b2a13e2","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117692578,"message":{"type":"text","id":"6679815871910","text":"＠小鬼"}}]}
+2017-09-11 16:15:14,401 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:15:14,401 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"4d535abc42e94901a73bf82a41a765a4","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117713838,"message":{"type":"text","id":"6679817319480","text":"＠小鬼爆破"}}]}
+2017-09-11 16:15:41,420 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:15:41,421 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:15:48,911 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:15:48,912 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"5d261065b5984d0f9dddc025c60ee802","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117748158,"message":{"type":"text","id":"6679819654448","text":"@斧"}}]}
+2017-09-11 16:16:07,179 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:16:07,179 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"cdaf1d3d32ef4208b7d2838488e4cb6a","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117766570,"message":{"type":"text","id":"6679820914995","text":"... 有html tag"}}]}
+2017-09-11 16:16:49,041 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:16:49,041 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"35ce860074b546ddb3716804bc2c6266","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505117808134,"message":{"type":"text","id":"6679823751754","text":"嗯= ="}}]}
+2017-09-11 16:18:12,073 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:18:12,073 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:18:18,009 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:18:18,009 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"dcc2a40ecd48483eb216bc263520ef34","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505117897018,"message":{"type":"text","id":"6679829854702","text":"@斧"}}]}
+2017-09-11 16:19:21,952 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:19:21,952 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:19:27,446 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:19:27,447 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"6ce50cd7074a437aba9822d545941b75","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505117966682,"message":{"type":"text","id":"6679834641885","text":"＠斧"}}]}
+2017-09-11 16:19:39,606 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:19:39,639 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"0b86379c5bfb47e7b1efdc53cb7011c2","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117978651,"message":{"type":"text","id":"6679835463592","text":"＠斧"}}]}
+2017-09-11 16:19:42,951 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:19:42,951 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"bc856cf1f8564f1cb1c8267ca6dd7a12","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117982374,"message":{"type":"text","id":"6679835717642","text":"拿掉了"}}]}
+2017-09-11 16:19:56,581 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:19:56,581 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"bd677a93ea5d4c8f97f0d79238d3171f","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505117995885,"message":{"type":"text","id":"6679836648628","text":"python 很猛的"}}]}
+2017-09-11 16:24:37,845 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:24:37,879 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1cf1cdb79aa04a4891e1962b75c25c59","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118277006,"message":{"type":"text","id":"6679856093106","text":"＠天選"}}]}
+2017-09-11 16:24:46,108 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:24:46,108 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"bc37b2c6caa14941900aaa0acea32e00","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118285548,"message":{"type":"text","id":"6679856691012","text":"＠死亡領主"}}]}
+2017-09-11 16:25:03,098 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:25:03,098 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"7be0d8b19899481a879556b7865d5c10","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118302509,"message":{"type":"text","id":"6679857865841","text":"＠終極瘟疫"}}]}
+2017-09-11 16:26:01,324 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:26:01,324 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:26:03,619 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:26:03,620 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"fe083e6c71d440028af2757ee21334b8","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118362706,"message":{"type":"text","id":"6679862049081","text":"cleantext"}}]}
+2017-09-11 16:26:09,396 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:26:09,396 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"5fb00287bfde46979dcf391db91c2fe2","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118368796,"message":{"type":"text","id":"6679862472506","text":"＠終極瘟疫"}}]}
+2017-09-11 16:26:34,927 - MaGa_Line_GW - INFO - Start Line_GW
+2017-09-11 16:26:34,927 - MaGa_Line_GW - INFO - Start server 9999 port 
+2017-09-11 16:26:39,419 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:26:39,419 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"8af8ac8e316e4724892888a3ac076d15","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118398839,"message":{"type":"text","id":"6679864560481","text":"＠終極瘟疫"}}]}
+2017-09-11 16:26:56,990 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:26:56,990 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"8716309ab69d4487b802014263ed1757","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118416426,"message":{"type":"text","id":"6679865785527","text":"@死亡瘟疫"}}]}
+2017-09-11 16:27:12,520 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:27:12,521 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"19ec861d97cc42a89d693f9658771ba4","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118431506,"message":{"type":"text","id":"6679866836968","text":"＠擴散"}}]}
+2017-09-11 16:27:24,180 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:27:24,180 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"95045339b6444930b9bb2c0ed1ed4e7a","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118443602,"message":{"type":"text","id":"6679867680313","text":"＠精靈"}}]}
+2017-09-11 16:33:37,065 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:33:37,090 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"b495e8432f7e45c5a424e02507d15aea","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118816171,"message":{"type":"text","id":"6679893854245","text":"＠炎魔"}}]}
+2017-09-11 16:35:51,883 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:35:51,909 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"a9180e2776724b6cb675cec60ddecdb3","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505118951039,"message":{"type":"text","id":"6679903365196","text":"＠滋補"}}]}
+2017-09-11 16:55:38,434 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 16:55:38,459 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"ff27f60131b2416ba23251263ddbb1f9","source":{"userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"user"},"timestamp":1505120137577,"message":{"type":"text","id":"6679989107502","text":"@水源"}}]}
+2017-09-11 17:05:07,382 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 17:05:07,404 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"1ce3b644facd40f7af17430e2513874d","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ua86314499783d1f3baabfe1d77bd804d","type":"room"},"timestamp":1505120706579,"message":{"type":"text","id":"6680031545413","text":"問一下，python 你是用哪一個IDE開發@@"}}]}
+2017-09-11 17:05:59,768 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 17:05:59,830 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"8d592bf963154a28989f69aa94e61efe","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505120759155,"message":{"type":"text","id":"6680035506452","text":"pycharm"}}]}
+2017-09-11 17:06:31,882 - MaGa_Line_GW - INFO - 9999 Port get data
+2017-09-11 17:06:31,899 - MaGa_Line_GW - INFO - Request body: {"events":[{"type":"message","replyToken":"d4f55bc0f3a14870a964f96f8944f6e8","source":{"roomId":"Rf886f38cbd23f6adaf26721bd46e1aa9","userId":"Ubbdaa6213fb48c4c2dfaa0435bdba22a","type":"room"},"timestamp":1505120791287,"message":{"type":"text","id":"6680037938332","text":"環境是python-3.5.2"}}]}
