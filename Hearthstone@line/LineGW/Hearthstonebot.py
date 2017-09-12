@@ -50,6 +50,7 @@ from linebot.models import (
 )
 
 
+
 def initial_log(file_name):
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger("MaGa_Line_GW")
@@ -67,7 +68,9 @@ logger = initial_log('gw_log.txt')
 global_locker = threading.Lock()
 config_filename = os.path.join('config', 'Setting.ini')
 
-
+mAllData = []
+mAllIndex = 0
+mAllGroup = 0
 class LineGW:
     def __init__(self, port):
         global logger
@@ -235,29 +238,68 @@ class LineGW:
 
             # https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/瘟疫?locale=zhTW
 
-            if text == '所有':
-                url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
-                headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
-                params = dict(
-                    locale='zhTW',
-                )
+            global mAllIndex
+            global mAllGroup
+            global mAllData
 
-                resp = requests.get(url=url, params=params, headers=headers)
-                data = json.loads(resp.text)
+            if text == '重置':
+                mAllIndex=0
+                mAllGroup=0
+                mAllData= []
+                text = TextSendMessage(text="條件已重置")
+                self.line_bot_api.reply_message(event.reply_token, text)
+                return 
 
-                count = 0;
+            if text == '所有' or text == '換一批':
+                if len(mAllData) == 0:
+                    url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
+                    headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
+                    params = dict(
+                        locale='zhTW',
+                    )
+
+                    resp = requests.get(url=url, params=params, headers=headers)
+                    data = json.loads(resp.text)
+
+                    for key, value in data.items():
+                        print("Key:",key)
+                        for item in data[key]:
+                            mAllData.append(item)
+
+                # print(allData)
+
                 nameArray = []
                 actions = []
                 ObjArray = []
-                if len(data) > 0:
-                    for item in data['Basic']:
+                count = 0
+
+                if len(mAllData) > 0:
+                    for i in range(mAllIndex,len(mAllData)-1):
+                        item = mAllData[i]
+                        tempIndex = i
                         if 'img' in item and 'text' in item and 'name' in item:
-                            if count > 12:
+                            if count % 16 == 0 and count != 0:
+                                buttons_template_message_more = TemplateSendMessage(
+                                    alt_text='Buttons template',
+                                    template=ButtonsTemplate(
+                                        text='看更多',
+                                        actions=[
+
+                                            MessageTemplateAction(
+                                                label='換一批',
+                                                text='@換一批'
+                                            )
+                                        ]
+                                    )
+                                )
+                                ObjArray.append(buttons_template_message_more)
+                                mAllIndex = tempIndex
                                 break;
                             name = item['name']
                             nameArray.append(name)
                             count= count+1;
                             if count!=0 and count % 4 == 0:
+                                mAllGroup=mAllGroup+1
                                 actions = []
                                 for nameItem in nameArray:
 
@@ -292,7 +334,7 @@ class LineGW:
                                 buttons_template_message = TemplateSendMessage(
                                     alt_text='Buttons template',
                                     template=ButtonsTemplate(
-                                        text='Please select',
+                                        text='第'+str(mAllGroup)+'組',
                                         actions=actions
                                     )
                                 )
@@ -308,6 +350,7 @@ class LineGW:
                 self.line_bot_api.reply_message(event.reply_token, ObjArray)
                 return
 
+            #########################################################################
             url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/'+text;
             headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
             params = dict(
@@ -319,32 +362,52 @@ class LineGW:
 
             count = 0;
             ObjArray=[]
+            nameArray = []
+            actions = []
             if len(data) > 0:
                 for item in data:
                     if 'img' in item and 'text' in item and 'name' in item:
                         if len(ObjArray) >= 5:
                             break;
-                        imgurl = item['img'].replace("http","https")
-                        print("!!!!!", imgurl)
-
-                        import re
-
-
-                        cleanr = re.compile('<.*?>')
-                        cleantext = re.sub(cleanr, '', item['text'])
-                        cleantext = cleantext.replace('\\n','\n')
-
-                        textObj = TextSendMessage(text=item['name']+"\n"+cleantext)
-                        imgObj  = ImageSendMessage(
-                                    original_content_url=imgurl,
-                                       preview_image_url=imgurl
-                                )
-
-                        ObjArray.append(textObj)
-                        ObjArray.append(imgObj)
                         count = count + 1
-                        break;
+                        if count == 1:
+                            imgurl = item['img'].replace("http","https")
+                            print("!!!!!", imgurl)
 
+                            import re
+                            cleanr = re.compile('<.*?>')
+                            cleantext = re.sub(cleanr, '', item['text'])
+                            cleantext = cleantext.replace('\\n','\n')
+
+                            textObj = TextSendMessage(text=item['name']+"\n"+cleantext)
+                            imgObj  = ImageSendMessage(
+                                        original_content_url=imgurl,
+                                           preview_image_url=imgurl
+                                    )
+
+                            ObjArray.append(textObj)
+                            ObjArray.append(imgObj)
+
+                        else:
+                            name = item['name']
+                            nameArray.append(name)
+                            if count != 1 and count % 4 == 1 :
+                                actions = []
+                                for nameItem in nameArray:
+                                    actions.append(MessageTemplateAction(
+                                        label=nameItem,
+                                        text='@' + nameItem,
+                                    ))
+                                    buttons_template_message = TemplateSendMessage(
+                                        alt_text='Buttons template',
+                                        template=ButtonsTemplate(
+                                            text='你可能還會想知道',
+                                            actions=actions
+                                        )
+                                    )
+                                ObjArray.append(buttons_template_message)
+                                nameArray = []
+                        # break;
 
                     else:
                         continue;
