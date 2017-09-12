@@ -234,6 +234,80 @@ class LineGW:
 
 
             # https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/瘟疫?locale=zhTW
+
+            if text == '所有':
+                url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
+                headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
+                params = dict(
+                    locale='zhTW',
+                )
+
+                resp = requests.get(url=url, params=params, headers=headers)
+                data = json.loads(resp.text)
+
+                count = 0;
+                nameArray = []
+                actions = []
+                ObjArray = []
+                if len(data) > 0:
+                    for item in data['Basic']:
+                        if 'img' in item and 'text' in item and 'name' in item:
+                            if count > 12:
+                                break;
+                            name = item['name']
+                            nameArray.append(name)
+                            count= count+1;
+                            if count!=0 and count % 4 == 0:
+                                actions = []
+                                for nameItem in nameArray:
+
+                                    actions.append( MessageTemplateAction(
+                                                    label=nameItem,
+                                                    text='@'+nameItem,
+                                                     ))
+
+                                # buttons_template_message = TemplateSendMessage(
+                                #     alt_text='Buttons template',
+                                #     template=ButtonsTemplate(
+                                #         thumbnail_image_url='https://example.com/image.jpg',
+                                #         title='Menu',
+                                #         text='Please select',
+                                #         actions=[
+                                #             PostbackTemplateAction(
+                                #                 label='postback',
+                                #                 text='postback text',
+                                #                 data='action=buy&itemid=1'
+                                #             ),
+                                #             MessageTemplateAction(
+                                #                 label='message',
+                                #                 text='message text'
+                                #             ),
+                                #             URITemplateAction(
+                                #                 label='uri',
+                                #                 uri='http://example.com/'
+                                #             )
+                                #         ]
+                                #     )
+                                # )
+                                buttons_template_message = TemplateSendMessage(
+                                    alt_text='Buttons template',
+                                    template=ButtonsTemplate(
+                                        text='Please select',
+                                        actions=actions
+                                    )
+                                )
+                                # self.line_bot_api.reply_message(event.reply_token, buttons_template_message)
+                                # return
+                                ObjArray.append(buttons_template_message)
+                                nameArray = []
+
+                        else:
+                            continue;
+
+
+                self.line_bot_api.reply_message(event.reply_token, ObjArray)
+                return
+
             url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/'+text;
             headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
             params = dict(
