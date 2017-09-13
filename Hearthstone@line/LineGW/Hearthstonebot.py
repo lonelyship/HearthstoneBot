@@ -205,6 +205,8 @@ class LineGW:
                 resetFilter(event)
 
             if text == '查詢' or text == '下一頁':
+                if text == '查詢':
+                    initial()
                 search(event)
 
 
