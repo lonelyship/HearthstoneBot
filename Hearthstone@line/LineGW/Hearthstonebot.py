@@ -71,6 +71,18 @@ config_filename = os.path.join('config', 'Setting.ini')
 mAllData = []
 mAllIndex = 0
 mAllGroup = 0
+mRaceDict={"德魯伊":"Druid","德":"Druid",
+           "薩滿":"Shaman","薩":"Shaman",
+           "術士":"Warlock","術":"Warlock",
+           "盜賊":"Rogue","盜":"Rogue",
+           "聖騎士":"Paladin","聖":"Paladin","聖騎":"Paladin",
+           "牧師":"Priest","牧":"Priest",
+           "中立":"Neutral",
+           "戰士":"Warrior","戰":"Warrior",
+           "獵人":"Hunter","獵":"Hunter",
+           "法師":"Mage","法":"Mage",}
+mRace = ""
+
 class LineGW:
     def __init__(self, port):
         global logger
@@ -132,6 +144,13 @@ class LineGW:
             text = event.message.text
             send_text = True
             check_user = True
+
+            global mAllIndex
+            global mAllGroup
+            global mAllData
+            global mRaceDict
+            global mRace
+
             if text.startswith("@"):
                 text= text.replace("@","")
             elif text.startswith("＠"):
@@ -139,22 +158,139 @@ class LineGW:
             else:
                 return
 
+
             if text == '重置':
                 reset(event)
 
-            elif text == '查詢' or text == '下一頁':
+            if text == '職業篩選':
+                getAllRace(event)
+
+            if text in  mRaceDict:
+                mRace=mRaceDict[text]
+                resetFilter(event,text)
+                return
+
+            if text == '查詢' or text == '下一頁':
                 search(event)
-            else:
-                fuzzySearch(event,text)
+
+
+            fuzzySearch(event,text)
+
+        def initial():
+            global mAllIndex
+            global mAllGroup
+            mAllIndex = 0
+            mAllGroup = 0
+
+        def getAllRace(event):
+            ObjArray = []
+            actions1 = []
+            actions1.append(MessageTemplateAction(
+                label="法師",
+                text='@法師',
+            ))
+            actions1.append(MessageTemplateAction(
+                label="德魯伊",
+                text='@德魯伊',
+            ))
+            actions1.append(MessageTemplateAction(
+                label="盜賊",
+                text='@盜賊',
+            ))
+            actions1.append(MessageTemplateAction(
+                label="術士",
+                text='@術士',
+            ))
+            buttons_template_message_1 = TemplateSendMessage(
+                alt_text='點擊下方職業查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方職業查詢',
+                    actions=actions1
+                )
+            )
+
+            actions2 = []
+            actions2.append(MessageTemplateAction(
+                label="聖騎士",
+                text='@聖騎士',
+            ))
+            actions2.append(MessageTemplateAction(
+                label="獵人",
+                text='@獵人',
+            ))
+            actions2.append(MessageTemplateAction(
+                label="牧師",
+                text='@牧師',
+            ))
+            actions2.append(MessageTemplateAction(
+                label="戰士",
+                text='@戰士',
+            ))
+            buttons_template_message_2 = TemplateSendMessage(
+                alt_text='點擊下方職業查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方職業查詢',
+                    actions=actions2
+                )
+            )
+
+            actions3 = []
+            actions3.append(MessageTemplateAction(
+                label="薩滿",
+                text='@薩滿',
+            ))
+            actions3.append(MessageTemplateAction(
+                label="中立",
+                text='@中立',
+            ))
+
+            buttons_template_message_3 = TemplateSendMessage(
+                alt_text='點擊下方職業查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方職業查詢',
+                    actions=actions3
+                )
+            )
+
+            ObjArray.append(buttons_template_message_1)
+            ObjArray.append(buttons_template_message_2)
+            ObjArray.append(buttons_template_message_3)
+            self.line_bot_api.reply_message(event.reply_token, ObjArray)
+            initial()
+            return
+
+        def resetFilter(event,text):
+            ObjArray = []
+            textObj = TextSendMessage(text="更新篩選條件:"+"["+"職業:"+text+"]")
+            ObjArray.append(textObj)
+            actions = []
+            actions.append(MessageTemplateAction(
+                label="查詢",
+                text='@查詢',
+            ))
+            buttons_template_message = TemplateSendMessage(
+                alt_text='點擊下方功能查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方功能查詢',
+                    actions=actions
+                )
+            )
+
+            ObjArray.append(buttons_template_message)
+            self.line_bot_api.reply_message(event.reply_token, ObjArray)
+            initial()
+            return
 
 
         def reset(event):
              global mAllIndex
              global mAllGroup
              global mAllData
+             global mRace
              mAllIndex = 0
              mAllGroup = 0
              mAllData = []
+             mRace = ""
              text = TextSendMessage(text="條件已重置")
              self.line_bot_api.reply_message(event.reply_token, text)
              return
@@ -163,6 +299,7 @@ class LineGW:
             global mAllIndex
             global mAllGroup
             global mAllData
+            global mRace
             if len(mAllData) == 0:
                 url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
                 headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
@@ -192,7 +329,7 @@ class LineGW:
                     if 'img' in item and 'text' in item and 'name' in item:
                         if count % 16 == 0 and count != 0:
                             buttons_template_message_more = TemplateSendMessage(
-                                alt_text='Buttons template',
+                                alt_text='點擊下方功能看更多',
                                 template=ButtonsTemplate(
                                     text='看更多',
                                     actions=[
@@ -207,15 +344,21 @@ class LineGW:
                             ObjArray.append(buttons_template_message_more)
                             mAllIndex = tempIndex
                             break;
+
+                        if mRace != "" and 'playerClass' in item and item["playerClass"] != mRace:
+                            continue
+
                         name = item['name']
                         nameArray.append(name)
                         count = count + 1;
                         if count != 0 and count % 4 == 0:
                             mAllGroup = mAllGroup + 1
                             actions = []
+                            index = 0
                             for nameItem in nameArray:
+                                index = index + 1
                                 actions.append(MessageTemplateAction(
-                                    label=nameItem,
+                                    label=str((mAllGroup-1)*4+index)+"."+nameItem,
                                     text='@' + nameItem,
                                 ))
 
@@ -243,9 +386,9 @@ class LineGW:
                             #     )
                             # )
                             buttons_template_message = TemplateSendMessage(
-                                alt_text='Buttons template',
+                                alt_text='點擊下方卡牌查詢',
                                 template=ButtonsTemplate(
-                                    text='第' + str(mAllGroup) + '組',
+                                    text="點擊下方卡牌查詢",
                                     actions=actions
                                 )
                             )
@@ -308,7 +451,7 @@ class LineGW:
                                         text='@' + nameItem,
                                     ))
                                     buttons_template_message = TemplateSendMessage(
-                                        alt_text='Buttons template',
+                                        alt_text='你可能還會想知道',
                                         template=ButtonsTemplate(
                                             text='你可能還會想知道',
                                             actions=actions
