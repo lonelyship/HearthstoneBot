@@ -199,7 +199,7 @@ class LineGW:
                     if text == '第一頁':
                             mXIndex = 0
                     if len(mXData) == 0:
-                        mXData = getXvideos(5)
+                        mXData = getXvideos(20)
                     searchX(event)
 
             if text.startswith("@"):
@@ -297,7 +297,7 @@ class LineGW:
                                 thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
                                 alt_text='!!',
                                 template=ButtonsTemplate(
-                                    text=mXData[tempIndex]['title'],
+                                    text=str(mXIndex+1)+"."+mXData[tempIndex]['title'],
                                     actions=actions
                                 )
                             )
