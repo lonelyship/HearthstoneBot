@@ -82,6 +82,27 @@ mRaceDict={"德魯伊":"Druid","德":"Druid",
            "獵人":"Hunter","獵":"Hunter",
            "法師":"Mage","法":"Mage",}
 mRace = ""
+mRaceName = ""
+
+
+mCostDict={
+           "一費":1,"1費":1,
+           "二費":2,"2費":2,
+           "三費":3,"3費":3,
+           "四費":4,"4費":4,
+           "五費":5,"5費":5,
+           "六費":6,"6費":6,
+           "七費":7,"7費":7,
+           "八費":8,"8費":8,
+           "九費":9,"9費":9,
+           "十費":10,"10費":10,
+           "十ㄧ費":11,"11費":11,
+           "十二費":12,"12費":12,
+           "二十費":20,"20費":20,
+           "三十費":30,"30費":30,
+           }
+mCost = ""
+mCostName = ""
 
 class LineGW:
     def __init__(self, port):
@@ -150,6 +171,11 @@ class LineGW:
             global mAllData
             global mRaceDict
             global mRace
+            global mRaceName
+            global mCostDict
+            global mCost
+            global mCostName
+
 
             if text.startswith("@"):
                 text= text.replace("@","")
@@ -165,10 +191,18 @@ class LineGW:
             if text == '職業篩選':
                 getAllRace(event)
 
+            if text == '費用篩選':
+                getAllCost(event)
+
             if text in  mRaceDict:
                 mRace=mRaceDict[text]
-                resetFilter(event,text)
-                return
+                mRaceName = text
+                resetFilter(event)
+
+            if text in  mCostDict:
+                mCost=mCostDict[text]
+                mCostName = text
+                resetFilter(event)
 
             if text == '查詢' or text == '下一頁':
                 search(event)
@@ -259,9 +293,105 @@ class LineGW:
             initial()
             return
 
-        def resetFilter(event,text):
+        def getAllCost(event):
             ObjArray = []
-            textObj = TextSendMessage(text="更新篩選條件:"+"["+"職業:"+text+"]")
+            actions1 = []
+            actions1.append(MessageTemplateAction(
+                label="1費",
+                text='@1費',
+            ))
+            actions1.append(MessageTemplateAction(
+                label="2費",
+                text='@2費',
+            ))
+            actions1.append(MessageTemplateAction(
+                label="3費",
+                text='@3費',
+            ))
+            actions1.append(MessageTemplateAction(
+                label="4費",
+                text='@4費',
+            ))
+            buttons_template_message_1 = TemplateSendMessage(
+                alt_text='點擊下方費用查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方費用查詢',
+                    actions=actions1
+                )
+            )
+
+            actions2 = []
+            actions2.append(MessageTemplateAction(
+                label="5費",
+                text='@5費',
+            ))
+            actions2.append(MessageTemplateAction(
+                label="6費",
+                text='@6費',
+            ))
+            actions2.append(MessageTemplateAction(
+                label="7費",
+                text='@7費',
+            ))
+            actions2.append(MessageTemplateAction(
+                label="8費",
+                text='@8費',
+            ))
+            buttons_template_message_2 = TemplateSendMessage(
+                alt_text='點擊下方費用查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方費用查詢',
+                    actions=actions2
+                )
+            )
+
+            actions3 = []
+            actions3.append(MessageTemplateAction(
+                label="9費",
+                text='@9費',
+            ))
+            actions3.append(MessageTemplateAction(
+                label="10費",
+                text='@10費',
+            ))
+            actions3.append(MessageTemplateAction(
+                label="11費",
+                text='@11費',
+            ))
+            actions3.append(MessageTemplateAction(
+                label="12費",
+                text='@12費',
+            ))
+
+            buttons_template_message_3 = TemplateSendMessage(
+                alt_text='點擊下方費用查詢',
+                template=ButtonsTemplate(
+                    text='點擊下方費用查詢',
+                    actions=actions3
+                )
+            )
+
+            ObjArray.append(buttons_template_message_1)
+            ObjArray.append(buttons_template_message_2)
+            ObjArray.append(buttons_template_message_3)
+            self.line_bot_api.reply_message(event.reply_token, ObjArray)
+            initial()
+            return
+
+        def resetFilter(event):
+            ObjArray = []
+            global mRaceName
+            global mCostName
+            raceName = "所有"
+            costName = "所有"
+
+            if mRaceName!="":
+                raceName = mRaceName
+
+            if mCostName!="":
+                costName = mCostName
+
+            textObj = TextSendMessage(text="更新篩選條件:"+"["+"職業:"+raceName+"  "+"費用:"+costName+"]")
             ObjArray.append(textObj)
             actions = []
             actions.append(MessageTemplateAction(
@@ -287,10 +417,16 @@ class LineGW:
              global mAllGroup
              global mAllData
              global mRace
+             global mRaceName
+             global mCost
+             global mCostName
              mAllIndex = 0
              mAllGroup = 0
-             mAllData = []
+
              mRace = ""
+             mRaceName = ""
+             mCost =""
+             mCostName = ""
              text = TextSendMessage(text="條件已重置")
              self.line_bot_api.reply_message(event.reply_token, text)
              return
@@ -300,6 +436,7 @@ class LineGW:
             global mAllGroup
             global mAllData
             global mRace
+            global mCost
             if len(mAllData) == 0:
                 url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
                 headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
@@ -346,6 +483,8 @@ class LineGW:
                             break;
 
                         if mRace != "" and 'playerClass' in item and item["playerClass"] != mRace:
+                            continue
+                        if mCost !="" and  'cost' in item and item["cost"] != mCost:
                             continue
 
                         name = item['name']
@@ -400,8 +539,12 @@ class LineGW:
                     else:
                         continue;
 
+            if len(ObjArray) == 0:
+                text = TextSendMessage(text="查無資料")
+                self.line_bot_api.reply_message(event.reply_token, text)
             self.line_bot_api.reply_message(event.reply_token, ObjArray)
             return
+
         def fuzzySearch(event,text):
             url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/' + text;
             headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
@@ -469,6 +612,8 @@ class LineGW:
                     self.line_bot_api.reply_message(event.reply_token, text)
                 else:
                     self.line_bot_api.reply_message(event.reply_token, ObjArray)
+
+                return
 
 
 
