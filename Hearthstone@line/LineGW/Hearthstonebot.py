@@ -31,6 +31,10 @@ from urllib.parse import quote, urlencode
 
 from flask import Flask, request, abort
 
+from getXVideo import getXvideos
+
+from random import randint
+
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -104,6 +108,10 @@ mCostDict={
 mCost = ""
 mCostName = ""
 
+mXData=[]
+mXIndex = 0
+mXGroup = 0
+
 class LineGW:
     def __init__(self, port):
         global logger
@@ -176,6 +184,23 @@ class LineGW:
             global mCost
             global mCostName
 
+            global mXData
+            global mXIndex
+            global mXGroup
+
+            if text.startswith("!"):
+                text = text.replace("!", "")
+                if text == 'X' or text == 'x' or text =='下一頁' or text =='上一頁' or text =='隨機' or text =='第一頁':
+                    if text == '上一頁':
+                        if mXIndex - 8>=0:
+                            mXIndex = mXIndex-8
+                    if text == '隨機':
+                        mXIndex = randint(0, len(mXData)-4)
+                    if text == '第一頁':
+                            mXIndex = 0
+                    if len(mXData) == 0:
+                        mXData = getXvideos(5)
+                    searchX(event)
 
             if text.startswith("@"):
                 text= text.replace("@","")
@@ -211,6 +236,82 @@ class LineGW:
 
 
             fuzzySearch(event,text)
+
+
+        def searchX(event):
+            global mXData
+            global mXIndex
+            global mXGroup
+
+            ObjArray = []
+            count = 0
+            if len(mXData) > 0:
+                bIsFirst = True
+                for i in range(mXIndex, len(mXData) - 1):
+                    item = mXData[i]
+                    tempIndex = i
+                    if 'img' in item and 'link' in item and 'title' in item:
+                        if tempIndex % 4 == 0 and bIsFirst == False:
+                            buttons_template_message_more = TemplateSendMessage(
+                                alt_text='點擊下方功能看更多',
+                                template=ButtonsTemplate(
+                                    text='換頁',
+                                    actions=[
+                                        MessageTemplateAction(
+                                            label='上一頁 ',
+                                            text='!上一頁'
+                                        ),
+                                        MessageTemplateAction(
+                                            label='下一頁 ',
+                                            text='!下一頁'
+                                        ),
+                                        MessageTemplateAction(
+                                            label='隨機 ',
+                                            text='!隨機'
+                                        ),
+                                        MessageTemplateAction(
+                                            label='第一頁 ',
+                                            text='!第一頁'
+                                        ),
+                                    ]
+                                )
+                            )
+                            ObjArray.append(buttons_template_message_more)
+
+
+                            mXIndex = tempIndex
+                            break;
+                        bIsFirst = False
+
+                        actions = []
+                        actions.append(URITemplateAction(
+                            label='preview',
+                            uri=mXData[tempIndex]['img'],
+                        ))
+                        actions.append(URITemplateAction(
+                                    label='play',
+                                    uri=mXData[tempIndex]['link'],
+                                ))
+
+                        buttons_template_message = TemplateSendMessage(
+                                thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
+                                alt_text='!!',
+                                template=ButtonsTemplate(
+                                    text=mXData[tempIndex]['title'],
+                                    actions=actions
+                                )
+                            )
+
+                        ObjArray.append(buttons_template_message)
+                    else:
+                        continue;
+
+                if len(ObjArray) == 0:
+                    text = TextSendMessage(text="查無資料")
+                    self.line_bot_api.reply_message(event.reply_token, text)
+
+                self.line_bot_api.reply_message(event.reply_token, ObjArray)
+                return
 
         def initial():
             global mAllIndex
