@@ -297,7 +297,7 @@ class LineGW:
                                 thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
                                 alt_text='!!',
                                 template=ButtonsTemplate(
-                                    text=str(mXIndex+1)+"."+mXData[tempIndex]['title'],
+                                    text=mXData[tempIndex]['title'],
                                     actions=actions
                                 )
                             )
