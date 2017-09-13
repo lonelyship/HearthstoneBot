@@ -138,230 +138,139 @@ class LineGW:
                 text= text.replace("＠","")
             else:
                 return
-            # if isinstance(event.source, SourceUser):
-            #     im_id = event.source.user_id
-            # if isinstance(event.source, SourceGroup):
-            #     im_id = event.source.group_id
-            #     check_user = False
-            #     if self.group_keyword == text[0:2]:
-            #         text = text[2:]
-            #     else:
-            #         send_text = False
-            # if isinstance(event.source, SourceRoom):
-            #     im_id = event.source.room_id
-            #     check_user = False
-            #     if self.group_keyword == text[0:2]:
-            #         text = text[2:]
-            #     else:
-            #         send_text = False
-            #
-            # if text in line_key_word:
-            #     key_contain = ""
-            #     for contain in line_key_word_all:
-            #         account_bind = check_account_bind(im_id)
-            #         if text == contain["KeyWord"]:
-            #             contain_bind = int(contain["checkbind"])
-            #             if contain_bind == 0:
-            #                 key_contain = contain["Content"]
-            #             else:
-            #                 if account_bind == 0:
-            #                     key_contain = {"Type": "textMessage", "text": "您尚未綁定，無法使用此功能，請透過「個人化服務」進行綁定。", "url_key": "A"}
-            #                 else:
-            #                     key_contain = contain["Content"]
-            #     send_line_test_message(event.reply_token, im_id, key_contain)
-            #
-            # elif text in action_word:
-            #     action_contain = ""
-            #     for contain in action_word_all:
-            #         if text == contain["KeyWord"]:
-            #             action_contain = contain["Content"]
-            #             action_typ = contain["Content"]["url_key"]
-            #
-            #             self.write_user_history('IC', action_typ, im_id)
-            #     action_word_message(event.reply_token, im_id, action_contain)
-            #
-            # else:
-            #     payload = {'Q': text, 'source': 'LINE', 'USER': im_id, 'SID': '0002', 'SKEY': '1234567'}
-            #     payload = urlencode(payload, quote_via=quote)
-            #     error_time_out = False
-            #     error_text = "系統忙碌中.請稍後再試"
-            #
-            #     if send_text is True:
-            #         room_id = self.search_room_id(im_id)
-            #         replay_message = []
-            #         try:
-            #             response = requests.get(self.api_url, params=payload, timeout=4)
-            #         except requests.exceptions.Timeout as e:
-            #             a = TextSendMessage(text=error_text)
-            #             replay_message.append(a)
-            #             logger.exception('LineGW exception' + str(e))
-            #             error_time_out = True
-            #
-            #         else:
-            #             response.raise_for_status()
-            #             response_json = response.json()
-            #             for element_data in response_json["ELEMENTS"]:
-            #                 json_data = self.line_check_elements_type(element_data, check_user)
-            #                 replay_message.append(json_data)
-            #             logger.info(replay_message)
-            #         finally:
-            #             self.write_db(room_id, im_id, text, 1, 1)
-            #             try:
-            #                 self.line_bot_api.reply_message(event.reply_token, replay_message)
-            #             except requests.exceptions.RequestException as e:
-            #                 if error_time_out is False:
-            #                     for qq in response_json["ELEMENTS"]:
-            #                         data_type = qq[0]["TYPE"]
-            #                         if data_type == "TEXT":
-            #                             response_text = qq[0]["MSG"]
-            #                             self.write_db(room_id, "viki", response_text, 1, 0)
-            #                         else:
-            #                             self.write_db(room_id, "viki", response_text, 100, 0)
-            #                 else:
-            #                     self.write_db(room_id, "viki", error_text, 1, 0)
-            #
-            #             else:
-            #                 if error_time_out is False:
-            #                     for qq in response_json["ELEMENTS"]:
-            #                         data_type = qq[0]["TYPE"]
-            #                         if data_type == "TEXT":
-            #                             response_text = qq[0]["MSG"]
-            #                             self.write_db(room_id, "viki", response_text, 1, 1)
-            #                         else:
-            #                             logger.info(qq[0])
-            #
-            #                             response_text = str(qq[0])
-            #                             self.write_db(room_id, "viki", response_text, 100, 1)
-            #                 else:
-            #                     self.write_db(room_id, "viki", error_text, 1, 1)
+
+            if text == '重置':
+                reset(event)
+
+            elif text == '查詢' or text == '下一頁':
+                search(event)
+            else:
+                fuzzySearch(event,text)
 
 
-            # https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/瘟疫?locale=zhTW
+        def reset(event):
+             global mAllIndex
+             global mAllGroup
+             global mAllData
+             mAllIndex = 0
+             mAllGroup = 0
+             mAllData = []
+             text = TextSendMessage(text="條件已重置")
+             self.line_bot_api.reply_message(event.reply_token, text)
+             return
 
+        def search(event):
             global mAllIndex
             global mAllGroup
             global mAllData
+            if len(mAllData) == 0:
+                url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
+                headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
+                params = dict(
+                    locale='zhTW',
+                )
 
-            if text == '重置':
-                mAllIndex=0
-                mAllGroup=0
-                mAllData= []
-                text = TextSendMessage(text="條件已重置")
-                self.line_bot_api.reply_message(event.reply_token, text)
-                return 
+                resp = requests.get(url=url, params=params, headers=headers)
+                data = json.loads(resp.text)
 
-            if text == '所有' or text == '換一批':
-                if len(mAllData) == 0:
-                    url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
-                    headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
-                    params = dict(
-                        locale='zhTW',
-                    )
+                for key, value in data.items():
+                    # print("Key:", key)
+                    for item in data[key]:
+                        mAllData.append(item)
 
-                    resp = requests.get(url=url, params=params, headers=headers)
-                    data = json.loads(resp.text)
+            # print(allData)
 
-                    for key, value in data.items():
-                        print("Key:",key)
-                        for item in data[key]:
-                            mAllData.append(item)
+            nameArray = []
+            actions = []
+            ObjArray = []
+            count = 0
 
-                # print(allData)
+            if len(mAllData) > 0:
+                for i in range(mAllIndex, len(mAllData) - 1):
+                    item = mAllData[i]
+                    tempIndex = i
+                    if 'img' in item and 'text' in item and 'name' in item:
+                        if count % 16 == 0 and count != 0:
+                            buttons_template_message_more = TemplateSendMessage(
+                                alt_text='Buttons template',
+                                template=ButtonsTemplate(
+                                    text='看更多',
+                                    actions=[
 
-                nameArray = []
-                actions = []
-                ObjArray = []
-                count = 0
-
-                if len(mAllData) > 0:
-                    for i in range(mAllIndex,len(mAllData)-1):
-                        item = mAllData[i]
-                        tempIndex = i
-                        if 'img' in item and 'text' in item and 'name' in item:
-                            if count % 16 == 0 and count != 0:
-                                buttons_template_message_more = TemplateSendMessage(
-                                    alt_text='Buttons template',
-                                    template=ButtonsTemplate(
-                                        text='看更多',
-                                        actions=[
-
-                                            MessageTemplateAction(
-                                                label='換一批',
-                                                text='@換一批'
-                                            )
-                                        ]
-                                    )
+                                        MessageTemplateAction(
+                                            label='下一頁',
+                                            text='@下一頁'
+                                        )
+                                    ]
                                 )
-                                ObjArray.append(buttons_template_message_more)
-                                mAllIndex = tempIndex
-                                break;
-                            name = item['name']
-                            nameArray.append(name)
-                            count= count+1;
-                            if count!=0 and count % 4 == 0:
-                                mAllGroup=mAllGroup+1
-                                actions = []
-                                for nameItem in nameArray:
+                            )
+                            ObjArray.append(buttons_template_message_more)
+                            mAllIndex = tempIndex
+                            break;
+                        name = item['name']
+                        nameArray.append(name)
+                        count = count + 1;
+                        if count != 0 and count % 4 == 0:
+                            mAllGroup = mAllGroup + 1
+                            actions = []
+                            for nameItem in nameArray:
+                                actions.append(MessageTemplateAction(
+                                    label=nameItem,
+                                    text='@' + nameItem,
+                                ))
 
-                                    actions.append( MessageTemplateAction(
-                                                    label=nameItem,
-                                                    text='@'+nameItem,
-                                                     ))
-
-                                # buttons_template_message = TemplateSendMessage(
-                                #     alt_text='Buttons template',
-                                #     template=ButtonsTemplate(
-                                #         thumbnail_image_url='https://example.com/image.jpg',
-                                #         title='Menu',
-                                #         text='Please select',
-                                #         actions=[
-                                #             PostbackTemplateAction(
-                                #                 label='postback',
-                                #                 text='postback text',
-                                #                 data='action=buy&itemid=1'
-                                #             ),
-                                #             MessageTemplateAction(
-                                #                 label='message',
-                                #                 text='message text'
-                                #             ),
-                                #             URITemplateAction(
-                                #                 label='uri',
-                                #                 uri='http://example.com/'
-                                #             )
-                                #         ]
-                                #     )
-                                # )
-                                buttons_template_message = TemplateSendMessage(
-                                    alt_text='Buttons template',
-                                    template=ButtonsTemplate(
-                                        text='第'+str(mAllGroup)+'組',
-                                        actions=actions
-                                    )
+                            # buttons_template_message = TemplateSendMessage(
+                            #     alt_text='Buttons template',
+                            #     template=ButtonsTemplate(
+                            #         thumbnail_image_url='https://example.com/image.jpg',
+                            #         title='Menu',
+                            #         text='Please select',
+                            #         actions=[
+                            #             PostbackTemplateAction(
+                            #                 label='postback',
+                            #                 text='postback text',
+                            #                 data='action=buy&itemid=1'
+                            #             ),
+                            #             MessageTemplateAction(
+                            #                 label='message',
+                            #                 text='message text'
+                            #             ),
+                            #             URITemplateAction(
+                            #                 label='uri',
+                            #                 uri='http://example.com/'
+                            #             )
+                            #         ]
+                            #     )
+                            # )
+                            buttons_template_message = TemplateSendMessage(
+                                alt_text='Buttons template',
+                                template=ButtonsTemplate(
+                                    text='第' + str(mAllGroup) + '組',
+                                    actions=actions
                                 )
-                                # self.line_bot_api.reply_message(event.reply_token, buttons_template_message)
-                                # return
-                                ObjArray.append(buttons_template_message)
-                                nameArray = []
+                            )
+                            # self.line_bot_api.reply_message(event.reply_token, buttons_template_message)
+                            # return
+                            ObjArray.append(buttons_template_message)
+                            nameArray = []
 
-                        else:
-                            continue;
+                    else:
+                        continue;
 
-
-                self.line_bot_api.reply_message(event.reply_token, ObjArray)
-                return
-
-            #########################################################################
-            url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/'+text;
+            self.line_bot_api.reply_message(event.reply_token, ObjArray)
+            return
+        def fuzzySearch(event,text):
+            url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/' + text;
             headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
             params = dict(
                 locale='zhTW',
             )
 
-            resp = requests.get(url=url, params=params,headers=headers)
+            resp = requests.get(url=url, params=params, headers=headers)
             data = json.loads(resp.text)
 
             count = 0;
-            ObjArray=[]
+            ObjArray = []
             nameArray = []
             actions = []
             if len(data) > 0:
@@ -371,19 +280,19 @@ class LineGW:
                             break;
                         count = count + 1
                         if count == 1:
-                            imgurl = item['img'].replace("http","https")
-                            print("!!!!!", imgurl)
+                            imgurl = item['img'].replace("http", "https")
+                            # print("!!!!!", imgurl)
 
                             import re
                             cleanr = re.compile('<.*?>')
                             cleantext = re.sub(cleanr, '', item['text'])
-                            cleantext = cleantext.replace('\\n','\n')
+                            cleantext = cleantext.replace('\\n', '\n')
 
-                            textObj = TextSendMessage(text=item['name']+"\n"+cleantext)
-                            imgObj  = ImageSendMessage(
-                                        original_content_url=imgurl,
-                                           preview_image_url=imgurl
-                                    )
+                            textObj = TextSendMessage(text=item['name'] + "\n" + cleantext)
+                            imgObj = ImageSendMessage(
+                                original_content_url=imgurl,
+                                preview_image_url=imgurl
+                            )
 
                             ObjArray.append(textObj)
                             ObjArray.append(imgObj)
@@ -391,7 +300,7 @@ class LineGW:
                         else:
                             name = item['name']
                             nameArray.append(name)
-                            if count != 1 and count % 4 == 1 :
+                            if count != 1 and count % 4 == 1:
                                 actions = []
                                 for nameItem in nameArray:
                                     actions.append(MessageTemplateAction(
@@ -407,7 +316,7 @@ class LineGW:
                                     )
                                 ObjArray.append(buttons_template_message)
                                 nameArray = []
-                        # break;
+                                # break;
 
                     else:
                         continue;
@@ -417,10 +326,6 @@ class LineGW:
                     self.line_bot_api.reply_message(event.reply_token, text)
                 else:
                     self.line_bot_api.reply_message(event.reply_token, ObjArray)
-                #
-                # text = TextSendMessage(text="查無資料")
-                # self.line_bot_api.reply_message(event.reply_token, text)
-
 
 
 
@@ -435,331 +340,6 @@ class LineGW:
                     sticker_id=event.message.sticker_id)
             )
 
-        def check_action(action_content, im_id):
-            actions = []
-            for single_action in action_content:
-                type = single_action["type"]
-                label = single_action["text"]
-                if type == "url":
-                    url = single_action["url"]
-                    action = URITemplateAction(label=label, uri=url)
-                    actions.append(action)
-                if type == "text":
-                    action = MessageTemplateAction(
-                            label=label,
-                            text=label)
-                    actions.append(action)
-            return actions
-
-        def check_url(urlkey, im_id):
-            full_url = ""
-            try:
-                if self.conn is None:
-                    self.conn = self.connect_db()
-                if self.conn:
-                    c = self.conn.cursor()
-                    c.execute("SELECT `id` FROM `member_lineuser` WHERE `SourceID`=%s ", (im_id,))
-                    id_data = c.fetchone()
-                    source_ID_id = ""
-                    if id_data is not None:
-                        source_ID_id =id_data["id"]
-
-                full_url = "url_key={url_key}&SourceID={sourceID}&SourceID_id={sourceID_id}&Source_id={Sourceid}&random={random_number}".format(url_key= urlkey,sourceID=im_id,sourceID_id=source_ID_id,Sourceid=self.source,random_number = uuid.uuid4().hex)
-                logger.info(full_url)
-            except BaseException as e:
-                # self.conn_close()
-                logger.exception('Other exception' + str(e))
-            url = full_url
-            return url
-
-        def check_account_bind(user_id):
-            account_enable = 0
-            try:
-                if self.conn is None:
-                    self.conn = self.connect_db()
-                if self.conn:
-                    c = self.conn.cursor()
-                    c.execute("SELECT `id` FROM `member_lineuser` WHERE `SourceID`=%s ", (user_id,))
-                    id_data = c.fetchone()
-                    if id_data is not None:
-                        source_id_id = id_data["id"]
-                        c.execute("SELECT `Enabled` FROM `member_bind` WHERE `SourceID_id`=%s ",
-                                  (source_id_id,))
-                        account_id_data = c.fetchone()
-                        if account_id_data is not None:
-                            account_enable = account_id_data["Enabled"]
-            except BaseException as e:
-                # self.conn_close()
-                logger.exception('Other exception' + str(e))
-            return account_enable
-
-        def check_imagemap_action(actions, im_id):
-            action_content = []
-            for action in actions:
-                action_type = action["type"]
-                if action_type == "imid_url":
-                    url_key = action["url_key"]
-                    url = check_url(url_key,im_id)
-                    link_uri = action["link_uri"] +url
-
-                    x = action["area"]["x"]
-                    y = action["area"]["y"]
-                    width = action["area"]["width"]
-                    height = action["area"]["height"]
-                    action_single = URIImagemapAction(
-                        link_uri=link_uri,
-                        area=ImagemapArea(x=x, y=y, width=width, height=height), )
-                    action_content.append(action_single)
-                elif action_type == "one_imid_url":
-                    link_uri = action["link_uri"]+im_id
-                    x = action["area"]["x"]
-                    y = action["area"]["y"]
-                    width = action["area"]["width"]
-                    height = action["area"]["height"]
-                    action_single = URIImagemapAction(
-                        link_uri=link_uri,
-                        area=ImagemapArea(x=x, y=y, width=width, height=height), )
-                    action_content.append(action_single)
-                elif action_type == "check_bind_url":
-                    account_bing = check_account_bind(im_id)
-                    if account_bing == 1:
-                        url_key = action["url_key"]
-                        url = check_url(url_key, im_id)
-                        link_uri = action["link_uri"] + url
-                        x = action["area"]["x"]
-                        y = action["area"]["y"]
-                        width = action["area"]["width"]
-                        height = action["area"]["height"]
-                        action_single = URIImagemapAction(
-                            link_uri=link_uri,
-                            area=ImagemapArea(x=x, y=y, width=width, height=height), )
-                        action_content.append(action_single)
-
-                    else:
-                        text = "尚未開啟帳務服務"
-                        x = action["area"]["x"]
-                        y = action["area"]["y"]
-                        width = action["area"]["width"]
-                        height = action["area"]["height"]
-                        action_single = MessageImagemapAction(
-                            text=text,
-                            area=ImagemapArea(x=x, y=y, width=width, height=height), )
-                        action_content.append(action_single)
-
-                elif action_type == "url":
-                    link_uri = action["link_uri"]
-                    x = action["area"]["x"]
-                    y = action["area"]["y"]
-                    width = action["area"]["width"]
-                    height = action["area"]["height"]
-                    action_single = URIImagemapAction(
-                        link_uri=link_uri,
-                        area=ImagemapArea(x=x, y=y, width=width, height=height), )
-                    action_content.append(action_single)
-
-                elif action_type == "message":
-                    text = action["text"]
-                    x = action["area"]["x"]
-                    y = action["area"]["y"]
-                    width = action["area"]["width"]
-                    height = action["area"]["height"]
-                    action_single = MessageImagemapAction(
-                        text=text,
-                        area=ImagemapArea(x=x, y=y, width=width, height=height), )
-
-                    action_content.append(action_single)
-                elif action_type == "button":
-                    x = action["area"]["x"]
-                    y = action["area"]["y"]
-                    width = action["area"]["width"]
-                    height = action["area"]["height"]
-                    main_title = action["text"]
-
-                    action_single = CarouselColumn(
-                            text=main_title,
-                            thumbnail_image_url=img_url,
-                            actions=button_data
-                        )
-
-
-            return action_content
-
-        def check_template_type(button_content, im_id):
-            button_type = button_content["Type"]
-            logger.info(button_type)
-            template_message = ""
-
-            if button_type == "ButtonsTemplate":
-                actions = check_action(button_content["Content"]["actions"], im_id)
-                text = button_content["Content"]["text"]
-                template = ButtonsTemplate(
-                    text=text,
-                    actions=actions)
-                template_message = TemplateSendMessage(
-                    alt_text='綁定帳號起在手機上使用', template=template)
-
-            if button_type == "ImagemapSendMessage":
-                actions = check_imagemap_action(button_content["Content"]["actions"], im_id)
-                title = button_content["Content"]["title"]
-                image_url = button_content["Content"]["base_url"]
-                image_height = button_content["Content"]["height"]
-                image_width = button_content["Content"]["width"]
-
-                template_message = ImagemapSendMessage(
-                    base_url=image_url,
-                    alt_text=title,
-                    base_size=BaseSize(height=image_height, width=image_width),
-                    actions=actions
-                )
-            if button_type == "textMessage":
-                text = button_content["text"]
-                template_message = TextSendMessage(text=text)
-
-            return template_message
-
-        def send_line_test_message(reply_token, im_id, key_content):
-            template = check_template_type(key_content, im_id)
-            self.line_bot_api.reply_message(reply_token, template)
-
-        def action_word_message(reply_token, im_id, action_content):
-            template = check_template_type(action_content, im_id)
-            self.line_bot_api.reply_message(reply_token, template)
-
-    def line_check_elements_type(self, elements_data_detail, check_user):
-        carousel_template_all = []
-        carousel_template = []
-        for data in elements_data_detail:
-            if "TEXT" == data["TYPE"]:
-                if "MSG" in data:
-                    main_title = data["MSG"]
-                else:
-                    main_title = ""
-                json_data = TextSendMessage(text=main_title)
-
-            elif "MEDIA" == data["TYPE"]:
-
-                if not "" == data["TITLE"]:
-                    main_title = data["TITLE"]
-                else:
-                    main_title = None
-
-                if not "" == data["IMG-URL"]:
-                    img_url = data["IMG-URL"]
-                else:
-                    img_url = None
-
-                '''if not "" == data["SUBTITLE"]:
-                    main_subtitle = data["SUBTITLE"]
-                else:
-                    main_subtitle = None'''
-                button_data = None
-                if not [] == data["BUTTONS"]:
-                    buttons = data["BUTTONS"]
-                    button_data = self.count_button_data(buttons, check_user)
-
-                if not [] == data["ACTIONS"]:
-                    buttons = data["ACTIONS"]
-                    button_data = self.count_button_data(buttons, check_user)
-
-                if button_data is not None:
-                    button_count = len(button_data)
-                    if len(button_data) > 3:
-                        while button_count > 0:
-                            del_number = button_count % 3
-                            if del_number == 0:
-                                del_number = 3
-                            if button_count - del_number != 0:
-                                carousel_template_all.insert(0,
-                                                             CarouselColumn(
-                                                                 text="你可能也想知道",
-                                                                 thumbnail_image_url=img_url,
-                                                                 actions=button_data[
-                                                                         button_count - del_number:button_count]
-                                                             ))
-                            else:
-                                carousel_template_all.insert(0,
-                                                             CarouselColumn(
-                                                                 text=main_title,
-                                                                 thumbnail_image_url=img_url,
-                                                                 actions=button_data[0:del_number]
-                                                             )
-                                                             )
-                            button_count = button_count - del_number
-
-                if None is not button_data:
-                    if len(elements_data_detail) == 1 and len(button_data) <= 3:
-                        if None is img_url:
-                            button_template = ButtonsTemplate(
-                                text=main_title,
-                                actions=button_data
-                            )
-                            json_data = TemplateSendMessage(
-                                alt_text="請在您的手機上觀看相關訊息",
-                                template=button_template
-                            )
-                        else:
-                            button_template = ButtonsTemplate(
-                                text=main_title,
-                                actions=button_data,
-                                thumbnail_image_url=img_url
-                            )
-                            json_data = TemplateSendMessage(
-                                alt_text="請在您的手機上觀看相關訊息",
-                                template=button_template
-                            )
-
-                    elif len(elements_data_detail) > 1 and len(button_data) <= 3:
-                        carousel_template = CarouselColumn(
-                            text=main_title,
-                            thumbnail_image_url=img_url,
-                            actions=button_data
-                        )
-                        logger.info(carousel_template)
-                        carousel_template_all.append(carousel_template)
-
-        if len(carousel_template_all) > 1:
-            logger.info(carousel_template_all)
-            carousel = CarouselTemplate(columns=carousel_template_all)
-            json_data = TemplateSendMessage(alt_text='請在您的手機上觀看相關訊息', template=carousel)
-        return json_data
-
-    def count_button_data(self, buttons, check_user):
-        if len(buttons) > 0:
-            button_data = []
-            for button in buttons:
-                if len(button_data) < 15:
-                    button_text = button["TEXT"]
-                    if False is check_user:
-                        button_text = self.group_keyword + button_text
-                    label_text = self.check_text(button["TEXT"])
-                    if "" == button["URL"]:
-                        button_data.append(MessageTemplateAction(
-                            label=label_text,
-                            text=button_text
-                        ))
-                    else:
-                        button_data.append(URITemplateAction(
-                            label=label_text,
-                            uri=button["URL"]
-                        ))
-                else:
-                    continue
-        else:
-            button_data = None
-        if None is not button_data:
-            if len(button_data) % 3 != 0 and len(button_data) > 3:
-                button_data_length = len(button_data)
-                del_number = button_data_length % 3
-                button_data = button_data[0:button_data_length - del_number]
-
-        return button_data
-
-    def check_text(self, text):
-        if len(text) > 20:
-            new_text = text[0:18]
-        else:
-            new_text = text
-        return new_text
 
     def log(message):  # simple wrapper for logging to stdout on heroku
         sys.stdout.flush()
@@ -771,129 +351,40 @@ class LineGW:
     #     self.conn.close()
     #     self.conn = None
 
-    def connect_db(self):
-        host = self.db_connect_host
-        user = self.db_connect_name
-        password = self.db_connect_password
-        db = self.db_connect_db
-        connection = pymysql.connect(host=host,
-                                     user=user,
-                                     password=password,
-                                     db=db,
-                                     charset='utf8mb4',
-                                     cursorclass=pymysql.cursors.DictCursor,
-                                     autocommit=True)
-
-        return connection
-
-    def search_room_id(self, im_id):
-        chat_room_id = ''
-        global global_locker
-        global_locker.acquire()
-        for i in range(0,3):
-            try:
-                if self.conn is None:
-                    self.conn = self.connect_db()
-                if self.conn:
-                    c = self.conn.cursor()
-                    c.execute("SELECT `ChatRoomID`,`LastAccessTime` FROM `Member_lineuser` WHERE `SourceID`=%s ", (im_id,))
-                    raw_chat_room_id = c.fetchone()
-                    now = datetime.datetime.now()
-                    if raw_chat_room_id is None:
-                        source = self.source
-                        profile = self.line_bot_api.get_profile(im_id)
-                        name = profile.display_name
-                        avatar_url = profile.picture_url
-                        chat_room_id = uuid.uuid4().hex
-                        c.execute(
-                            "INSERT INTO `Member_lineuser` ( `SourceID` , `CreateTime`, `LastAccessTime`, `NickName`, `IconURL`, `GetInfoTime`"
-                            ", `ExtraInfo`, `ChatRoomID`, `Enabled`, `Source_id`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                            (im_id, now, now, name, avatar_url, now, "something have to store", chat_room_id, 1, source))
-                        self.conn.commit()
-
-                    else:
-                        last_access_time = raw_chat_room_id["LastAccessTime"]
-                        chat_room_id = raw_chat_room_id["ChatRoomID"]
-                        if now > last_access_time + datetime.timedelta(days=1):
-                            profile = self.line_bot_api.get_profile(im_id)
-                            avatar_url = profile.picture_url
-                            c.execute("UPDATE Member_lineuser SET IconURL=%s ,LastAccessTime=%s WHERE ChatRoomID=%s",( avatar_url, now, chat_room_id))
-                            self.conn.commit()
-
-            except BaseException as e:
-                # self.conn_close()
-                logger.exception('update_ga_group exception' + str(e))
-            finally:
-                if len(chat_room_id) > 0:
-                    break
-        global_locker.release()
-
-        return chat_room_id
-
-    def write_db(self, room_id, im_id, content, meg_type, meg_status):
-        now = datetime.datetime.now()
-        msg_error_count = 0
-        text_content = content
-        try:
-            if self.conn is None:
-                self.conn = self.connect_db()
-            if self.conn:
-                c = self.conn.cursor()
-                if len(text_content) >= 500:
-                    logger.exception('reply_content > 500:' + text_content)
-                    text_content = '{"ELEMENTS":[[{"TYPE":"MEDIA","IMG-URL":"","IMG-LINK":"","TITLE":"TEMPLATE過長"}]]}'
-                c.execute(
-                    "INSERT INTO `Room_room` (`ChatRoomID`,`SenderID`,`Message`,`MessageType`,`MessageStutus`,`MsgErrorCount`,`CreateTime`,`UpdateTime`,`Sender`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                    (room_id, im_id, text_content, meg_type, meg_status, msg_error_count, now, now, 'Line'))
-                self.conn.commit()
-        except BaseException as e:
-            # self.conn_close()
-            logger.exception('update_ga_group exception' + str(e))
-
-    def write_user_history(self, action_type, action_content, im_id):
-        now = datetime.datetime.now()
-        try:
-            if self.conn is None:
-                self.conn = self.connect_db()
-            if self.conn:
-                c = self.conn.cursor()
-                c.execute("SELECT `id` FROM `Member_lineuser` WHERE `SourceID`=%s ", (im_id,))
-                raw_chat_room_id = c.fetchone()
-                if raw_chat_room_id is not None:
-                    line_user_id = raw_chat_room_id["id"]
-                    c.execute("INSERT INTO `member_userhistory` (`ActionType`,`ActionContent`,`Time`,`Source_id`,`SourceID_id`) VALUES (%s,%s,%s,%s,%s)",(action_type, action_content, now, self.source, line_user_id))
-                    self.conn.commit()
-        except BaseException as e:
-            # self.conn_close()
-            logger.exception('Update_user_history exception' + str(e))
-
-    # def update_alive_status(self, system_key):
-    #     global global_locker
-    #     global_locker.acquire()
-    #     try:
+    # def connect_db(self):
+    #     host = self.db_connect_host
+    #     user = self.db_connect_name
+    #     password = self.db_connect_password
+    #     db = self.db_connect_db
+    #     connection = pymysql.connect(host=host,
+    #                                  user=user,
+    #                                  password=password,
+    #                                  db=db,
+    #                                  charset='utf8mb4',
+    #                                  cursorclass=pymysql.cursors.DictCursor,
+    #                                  autocommit=True)
     #
+    #     return connection
+    #
+    # def write_db(self, room_id, im_id, content, meg_type, meg_status):
+    #     now = datetime.datetime.now()
+    #     msg_error_count = 0
+    #     text_content = content
+    #     try:
     #         if self.conn is None:
     #             self.conn = self.connect_db()
     #         if self.conn:
     #             c = self.conn.cursor()
-    #             now = datetime.datetime.now()
-    #
-    #             c.execute("UPDATE othermanagement_system_alive SET LastAliveTime=%s WHERE SystemKey=%s",(now, system_key))
+    #             if len(text_content) >= 500:
+    #                 logger.exception('reply_content > 500:' + text_content)
+    #                 text_content = '{"ELEMENTS":[[{"TYPE":"MEDIA","IMG-URL":"","IMG-LINK":"","TITLE":"TEMPLATE過長"}]]}'
+    #             c.execute(
+    #                 "INSERT INTO `Room_room` (`ChatRoomID`,`SenderID`,`Message`,`MessageType`,`MessageStutus`,`MsgErrorCount`,`CreateTime`,`UpdateTime`,`Sender`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+    #                 (room_id, im_id, text_content, meg_type, meg_status, msg_error_count, now, now, 'Line'))
     #             self.conn.commit()
     #     except BaseException as e:
     #         # self.conn_close()
-    #         logger.exception('sqlite_question_count_update exception' + str(e))
-    #     finally:
-    #         global_locker.release()
-
-    # def thread_alive(self, gw_name):
-    #     try:
-    #         while (True):
-    #             self.update_alive_status(gw_name)
-    #             time.sleep(30)
-    #     except:
-    #         logger.exception(traceback.format_exc())
-
+    #         logger.exception('update_ga_group exception' + str(e))
 
 def thread_function(gw):
     gw.run()
