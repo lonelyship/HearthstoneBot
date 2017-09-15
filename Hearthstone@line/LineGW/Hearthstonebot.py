@@ -203,16 +203,16 @@ class LineGW:
                 count = 0;
                 for item in result:
                     if 'img' in item and 'link' in item and 'title' in item:
-                        print(item)
+                        # print(item)
                         count = count+1;
                         if count > 5:
                             break
 
                         actions = []
-                        actions.append(URITemplateAction(
-                            label='preview',
-                            uri=item['img'],
-                        ))
+                        # actions.append(URITemplateAction(
+                        #     label='preview',
+                        #     uri=item['img'],
+                        # ))
                         actions.append(URITemplateAction(
                             label='play',
                             uri=item['link'],
