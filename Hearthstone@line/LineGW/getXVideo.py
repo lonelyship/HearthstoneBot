@@ -19,10 +19,10 @@ def getXvideos(Max):
             title  = item.find("img").get('alt')
             img = item.find("img").get('src')
             link = host+item.find("a").get('href')
-            print(title,img,link)
+            # print(title,img,link)
             obj["title"]=title
             obj['img']=img
             obj['link']=link
             xArray.append(obj)
-    print(len(xArray),xArray)
+    # print(len(xArray),xArray)
     return xArray

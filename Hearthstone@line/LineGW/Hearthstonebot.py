@@ -33,6 +33,8 @@ from flask import Flask, request, abort
 
 from getXVideo import getXvideos
 
+from youtube import youtube
+
 from random import randint
 
 from linebot import (
@@ -110,7 +112,8 @@ mCostName = ""
 
 mXData=[]
 mXIndex = 0
-mXGroup = 0
+
+mXName = ""
 
 class LineGW:
     def __init__(self, port):
@@ -186,21 +189,81 @@ class LineGW:
 
             global mXData
             global mXIndex
-            global mXGroup
 
-            if text.startswith("!"):
-                text = text.replace("!", "")
-                if text == 'X' or text == 'x' or text =='下一頁' or text =='上一頁' or text =='隨機' or text =='第一頁':
-                    if text == '上一頁':
-                        if mXIndex - 8>=0:
-                            mXIndex = mXIndex-8
-                    if text == '隨機':
-                        mXIndex = randint(0, len(mXData)-4)
-                    if text == '第一頁':
-                            mXIndex = 0
-                    if len(mXData) == 0:
-                        mXData = getXvideos(20)
-                    searchX(event)
+            global mXName
+
+            if text.startswith("#"):
+                text = text.replace("#", "")
+
+                MYoutube = youtube()
+                result = MYoutube.search(text, event)
+
+                ObjArray = []
+                carousel_template_all = []
+                count = 0;
+                for item in result:
+                    if 'img' in item and 'link' in item and 'title' in item:
+                        print(item)
+                        count = count+1;
+                        if count > 5:
+                            break
+
+                        actions = []
+                        actions.append(URITemplateAction(
+                            label='preview',
+                            uri=item['img'],
+                        ))
+                        actions.append(URITemplateAction(
+                            label='play',
+                            uri=item['link'],
+                        ))
+
+                        carousel_template_all.append(
+                            CarouselColumn(
+                                text=item['title'].replace('&',","),
+                                thumbnail_image_url=item['img'].replace("http", "https"),
+                                actions=actions
+                        ))
+                    else:
+                        continue;
+
+                carousel = CarouselTemplate(columns=carousel_template_all)
+                ObjArray.append(TemplateSendMessage(alt_text='請在您的手機上觀看相關訊息', template=carousel))
+
+                if len(carousel_template_all) == 0:
+                    text = TextSendMessage(text="查無資料")
+                    self.line_bot_api.reply_message(event.reply_token, text)
+                    return
+
+                self.line_bot_api.reply_message(event.reply_token, ObjArray)
+                return
+
+            # if text.startswith("!"):
+            #     text = text.replace("!", "")
+            #     if True:
+            #         if text == '上一頁':
+            #             if mXIndex - 8>=0:
+            #                 mXIndex = mXIndex-8
+            #         elif text == '隨機':
+            #             mXIndex = randint(0, len(mXData)-4)
+            #         elif text == '第一頁':
+            #             mXIndex = 0
+            #         elif text == '重置篩選條件':
+            #             mXIndex = 0
+            #             mXName = ""
+            #         elif text == '更新':
+            #             mXIndex = 0
+            #             mXData = []
+            #             mXIndex = 0
+            #         elif text != '下一頁':
+            #             mXIndex = 0
+            #             mXName = text
+            #
+            #         if len(mXData) == 0:
+            #             mXData = getXvideos(50)
+            #
+            #
+            #         searchX(event)
 
             if text.startswith("@"):
                 text= text.replace("@","")
@@ -241,17 +304,22 @@ class LineGW:
         def searchX(event):
             global mXData
             global mXIndex
-            global mXGroup
+            global mXName
 
             ObjArray = []
+            carousel_template_all = []
             count = 0
             if len(mXData) > 0:
                 bIsFirst = True
+                count = 0
                 for i in range(mXIndex, len(mXData) - 1):
                     item = mXData[i]
                     tempIndex = i
                     if 'img' in item and 'link' in item and 'title' in item:
-                        if tempIndex % 4 == 0 and bIsFirst == False:
+                        if mXName != "" and mXData[tempIndex]['title'].lower().find(mXName.lower()) == -1:
+                            continue
+
+                        if count % 5 == 0 and bIsFirst == False:
                             buttons_template_message_more = TemplateSendMessage(
                                 alt_text='點擊下方功能看更多',
                                 template=ButtonsTemplate(
@@ -270,17 +338,22 @@ class LineGW:
                                             text='!隨機'
                                         ),
                                         MessageTemplateAction(
-                                            label='第一頁 ',
-                                            text='!第一頁'
+                                            label='重置篩選條件 ',
+                                            text='!重置篩選條件'
                                         ),
+                                        # MessageTemplateAction(
+                                        #     label='重置篩選條件',
+                                        #     text='!重置篩選條件'
+                                        # ),
                                     ]
                                 )
                             )
                             ObjArray.append(buttons_template_message_more)
-
-
                             mXIndex = tempIndex
+                            bIsFirst = True
                             break;
+
+                        count = count + 1
                         bIsFirst = False
 
                         actions = []
@@ -293,22 +366,66 @@ class LineGW:
                                     uri=mXData[tempIndex]['link'],
                                 ))
 
-                        buttons_template_message = TemplateSendMessage(
-                                thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
-                                alt_text='!!',
-                                template=ButtonsTemplate(
-                                    text=mXData[tempIndex]['title'],
-                                    actions=actions
-                                )
-                            )
+                        carousel_template_all.append(
+                                                     CarouselColumn(
+                                                         text=mXData[tempIndex]['title'],
+                                                         thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
+                                                         actions=actions
+                                                     ))
 
-                        ObjArray.append(buttons_template_message)
+                        # buttons_template_message = TemplateSendMessage(
+                        #         thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
+                        #         alt_text='!!',
+                        #         template=ButtonsTemplate(
+                        #             text=mXData[tempIndex]['title'],
+                        #             actions=actions
+                        #         )
+                        #     )
+                        #
+                        # ObjArray.append(buttons_template_message)
                     else:
                         continue;
 
-                if len(ObjArray) == 0:
+                carousel = CarouselTemplate(columns=carousel_template_all)
+                ObjArray.append(TemplateSendMessage(alt_text='請在您的手機上觀看相關訊息', template=carousel))
+
+                if len(carousel_template_all) == 0:
                     text = TextSendMessage(text="查無資料")
                     self.line_bot_api.reply_message(event.reply_token, text)
+                elif bIsFirst == False:
+                    buttons_template_message_more = TemplateSendMessage(
+                        alt_text='點擊下方功能看更多',
+                        template=ButtonsTemplate(
+                            text='換頁',
+                            actions=[
+                                MessageTemplateAction(
+                                    label='上一頁 ',
+                                    text='!上一頁'
+                                ),
+                                MessageTemplateAction(
+                                    label='下一頁 ',
+                                    text='!下一頁'
+                                ),
+                                MessageTemplateAction(
+                                    label='隨機 ',
+                                    text='!隨機'
+                                ),
+                                MessageTemplateAction(
+                                    label='重置篩選條件 ',
+                                    text='!重置篩選條件'
+                                ),
+                                # MessageTemplateAction(
+                                #     label='重置篩選條件',
+                                #     text='!重置篩選條件'
+                                # ),
+                            ]
+                        )
+                    )
+
+                    ObjArray.append(buttons_template_message_more)
+
+                    mXIndex = tempIndex
+                    bIsFirst == True
 
                 self.line_bot_api.reply_message(event.reply_token, ObjArray)
                 return
@@ -781,8 +898,11 @@ def thread_function(gw):
     gw.run()
 
 
+MYoutube = None
+
 if __name__ == "__main__":
     logger.info("Start Line_GW")
+
     thread_list = []
     # for i in range(10):
     #     gw_port = 9000 + i
@@ -792,6 +912,7 @@ if __name__ == "__main__":
 
     gw = LineGW(port=9999)
     gw.run()
+
     # for t in thread_list:
     #     t.start()
     # for t in thread_list:
