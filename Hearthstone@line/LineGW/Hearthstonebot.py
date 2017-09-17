@@ -69,53 +69,52 @@ def initial_log(file_name):
     logger.addHandler(log_handler)
     return logger
 
-
 logger = initial_log('gw_log.txt')
 global_locker = threading.Lock()
 config_filename = os.path.join('config', 'Setting.ini')
 
-mAllData = []
-mAllIndex = 0
-mAllGroup = 0
-mRaceDict={"德魯伊":"Druid","德":"Druid",
-           "薩滿":"Shaman","薩":"Shaman",
-           "術士":"Warlock","術":"Warlock",
-           "盜賊":"Rogue","盜":"Rogue",
-           "聖騎士":"Paladin","聖":"Paladin","聖騎":"Paladin",
-           "牧師":"Priest","牧":"Priest",
-           "中立":"Neutral",
-           "戰士":"Warrior","戰":"Warrior",
-           "獵人":"Hunter","獵":"Hunter",
-           "法師":"Mage","法":"Mage",}
-mRace = ""
-mRaceName = ""
 
-
-mCostDict={
-           "一費":1,"1費":1,
-           "二費":2,"2費":2,
-           "三費":3,"3費":3,
-           "四費":4,"4費":4,
-           "五費":5,"5費":5,
-           "六費":6,"6費":6,
-           "七費":7,"7費":7,
-           "八費":8,"8費":8,
-           "九費":9,"9費":9,
-           "十費":10,"10費":10,
-           "十ㄧ費":11,"11費":11,
-           "十二費":12,"12費":12,
-           "二十費":20,"20費":20,
-           "三十費":30,"30費":30,
-           }
-mCost = ""
-mCostName = ""
-
-mXData=[]
-mXIndex = 0
-
-mXName = ""
 
 class LineGW:
+    mAllData = []
+    mAllIndex = 0
+    mAllGroup = 0
+    mRaceDict = {"德魯伊": "Druid", "德": "Druid",
+                 "薩滿": "Shaman", "薩": "Shaman",
+                 "術士": "Warlock", "術": "Warlock",
+                 "盜賊": "Rogue", "盜": "Rogue",
+                 "聖騎士": "Paladin", "聖": "Paladin", "聖騎": "Paladin",
+                 "牧師": "Priest", "牧": "Priest",
+                 "中立": "Neutral",
+                 "戰士": "Warrior", "戰": "Warrior",
+                 "獵人": "Hunter", "獵": "Hunter",
+                 "法師": "Mage", "法": "Mage", }
+    mRace = ""
+    mRaceName = ""
+
+    mCostDict = {
+        "一費": 1, "1費": 1,
+        "二費": 2, "2費": 2,
+        "三費": 3, "3費": 3,
+        "四費": 4, "4費": 4,
+        "五費": 5, "5費": 5,
+        "六費": 6, "6費": 6,
+        "七費": 7, "7費": 7,
+        "八費": 8, "8費": 8,
+        "九費": 9, "9費": 9,
+        "十費": 10, "10費": 10,
+        "十ㄧ費": 11, "11費": 11,
+        "十二費": 12, "12費": 12,
+        "二十費": 20, "20費": 20,
+        "三十費": 30, "30費": 30,
+    }
+    mCost = ""
+    mCostName = ""
+
+    mXData = []
+    mXIndex = 0
+
+    mXName = ""
     def __init__(self, port):
         global logger
         logger.info("Start server {0} port ".format(port))
@@ -176,21 +175,6 @@ class LineGW:
             text = event.message.text
             send_text = True
             check_user = True
-
-            global mAllIndex
-            global mAllGroup
-            global mAllData
-            global mRaceDict
-            global mRace
-            global mRaceName
-            global mCostDict
-            global mCost
-            global mCostName
-
-            global mXData
-            global mXIndex
-
-            global mXName
 
             if text.startswith("#"):
                 text = text.replace("#", "")
@@ -282,14 +266,14 @@ class LineGW:
             if text == '費用篩選':
                 getAllCost(event)
 
-            if text in  mRaceDict:
-                mRace=mRaceDict[text]
-                mRaceName = text
+            if text in  self.mRaceDict:
+                self.mRace=self.mRaceDict[text]
+                self.mRaceName = text
                 resetFilter(event)
 
-            if text in  mCostDict:
-                mCost=mCostDict[text]
-                mCostName = text
+            if text in  self.mCostDict:
+                self.mCost=self.mCostDict[text]
+                self.mCostName = text
                 resetFilter(event)
 
             if text == '查詢' or text == '下一頁':
@@ -302,21 +286,18 @@ class LineGW:
 
 
         def searchX(event):
-            global mXData
-            global mXIndex
-            global mXName
 
             ObjArray = []
             carousel_template_all = []
             count = 0
-            if len(mXData) > 0:
+            if len(self.mXData) > 0:
                 bIsFirst = True
                 count = 0
-                for i in range(mXIndex, len(mXData) - 1):
-                    item = mXData[i]
+                for i in range(self.mXIndex, len(self.mXData) - 1):
+                    item = self.mXData[i]
                     tempIndex = i
                     if 'img' in item and 'link' in item and 'title' in item:
-                        if mXName != "" and mXData[tempIndex]['title'].lower().find(mXName.lower()) == -1:
+                        if self.mXName != "" and self.mXData[tempIndex]['title'].lower().find(self.mXName.lower()) == -1:
                             continue
 
                         if count % 5 == 0 and bIsFirst == False:
@@ -349,7 +330,7 @@ class LineGW:
                                 )
                             )
                             ObjArray.append(buttons_template_message_more)
-                            mXIndex = tempIndex
+                            self.mXIndex = tempIndex
                             bIsFirst = True
                             break;
 
@@ -359,17 +340,17 @@ class LineGW:
                         actions = []
                         actions.append(URITemplateAction(
                             label='preview',
-                            uri=mXData[tempIndex]['img'],
+                            uri=self.mXData[tempIndex]['img'],
                         ))
                         actions.append(URITemplateAction(
                                     label='play',
-                                    uri=mXData[tempIndex]['link'],
+                                    uri=self.mXData[tempIndex]['link'],
                                 ))
 
                         carousel_template_all.append(
                                                      CarouselColumn(
-                                                         text=mXData[tempIndex]['title'],
-                                                         thumbnail_image_url=mXData[tempIndex]['img'].replace("http", "https"),
+                                                         text=self.mXData[tempIndex]['title'],
+                                                         thumbnail_image_url=self.mXData[tempIndex]['img'].replace("http", "https"),
                                                          actions=actions
                                                      ))
 
@@ -424,17 +405,15 @@ class LineGW:
 
                     ObjArray.append(buttons_template_message_more)
 
-                    mXIndex = tempIndex
+                    self.mXIndex = tempIndex
                     bIsFirst == True
 
                 self.line_bot_api.reply_message(event.reply_token, ObjArray)
                 return
 
         def initial():
-            global mAllIndex
-            global mAllGroup
-            mAllIndex = 0
-            mAllGroup = 0
+            self.mAllIndex = 0
+            self.mAllGroup = 0
 
         def getAllRace(event):
             ObjArray = []
@@ -600,16 +579,15 @@ class LineGW:
 
         def resetFilter(event):
             ObjArray = []
-            global mRaceName
-            global mCostName
+
             raceName = "所有"
             costName = "所有"
 
-            if mRaceName!="":
-                raceName = mRaceName
+            if self.mRaceName!="":
+                raceName = self.mRaceName
 
-            if mCostName!="":
-                costName = mCostName
+            if self.mCostName!="":
+                costName =self. mCostName
 
             textObj = TextSendMessage(text="更新篩選條件:"+"["+"職業:"+raceName+"  "+"費用:"+costName+"]")
             ObjArray.append(textObj)
@@ -633,31 +611,21 @@ class LineGW:
 
 
         def reset(event):
-             global mAllIndex
-             global mAllGroup
-             global mAllData
-             global mRace
-             global mRaceName
-             global mCost
-             global mCostName
-             mAllIndex = 0
-             mAllGroup = 0
 
-             mRace = ""
-             mRaceName = ""
-             mCost =""
-             mCostName = ""
+             self.mAllIndex = 0
+             self.mAllGroup = 0
+
+             self.mRace = ""
+             self.mRaceName = ""
+             self.mCost =""
+             self.mCostName = ""
              text = TextSendMessage(text="條件已重置")
              self.line_bot_api.reply_message(event.reply_token, text)
              return
 
         def search(event):
-            global mAllIndex
-            global mAllGroup
-            global mAllData
-            global mRace
-            global mCost
-            if len(mAllData) == 0:
+
+            if len(self.mAllData) == 0:
                 url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/';
                 headers = {'X-Mashape-Key': 'zJ6HmBMQfamshXuEdrPbQ9QmIMtrp1yaw7hjsnLY3DeERkqtQI'}
                 params = dict(
@@ -670,7 +638,7 @@ class LineGW:
                 for key, value in data.items():
                     # print("Key:", key)
                     for item in data[key]:
-                        mAllData.append(item)
+                        self.mAllData.append(item)
 
             # print(allData)
 
@@ -679,9 +647,9 @@ class LineGW:
             ObjArray = []
             count = 0
 
-            if len(mAllData) > 0:
-                for i in range(mAllIndex, len(mAllData) - 1):
-                    item = mAllData[i]
+            if len(self.mAllData) > 0:
+                for i in range(self.mAllIndex, len(self.mAllData) - 1):
+                    item = self.mAllData[i]
                     tempIndex = i
                     if 'img' in item and 'text' in item and 'name' in item:
                         if count % 16 == 0 and count != 0:
@@ -699,25 +667,25 @@ class LineGW:
                                 )
                             )
                             ObjArray.append(buttons_template_message_more)
-                            mAllIndex = tempIndex
+                            self.mAllIndex = tempIndex
                             break;
 
-                        if mRace != "" and 'playerClass' in item and item["playerClass"] != mRace:
+                        if self.mRace != "" and 'playerClass' in item and item["playerClass"] != self.mRace:
                             continue
-                        if mCost !="" and  'cost' in item and item["cost"] != mCost:
+                        if self.mCost !="" and  'cost' in item and item["cost"] != self.mCost:
                             continue
 
                         name = item['name']
                         nameArray.append(name)
                         count = count + 1;
                         if count != 0 and count % 4 == 0:
-                            mAllGroup = mAllGroup + 1
+                            self.mAllGroup = self.mAllGroup + 1
                             actions = []
                             index = 0
                             for nameItem in nameArray:
                                 index = index + 1
                                 actions.append(MessageTemplateAction(
-                                    label=str((mAllGroup-1)*4+index)+"."+nameItem,
+                                    label=str((self.mAllGroup-1)*4+index)+"."+nameItem,
                                     text='@' + nameItem,
                                 ))
 
