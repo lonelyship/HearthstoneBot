@@ -10,12 +10,14 @@ from datetime import timedelta
 # 3.選擇[終點車站]
 # 4.選擇[日期]
 # 5-1.查詢各車次時刻表 => queryDailyTimetable_OD([起始車站ID][終點車站ID][日期%Y-%m-%d])
+# 5-1-2.查詢剩餘座位狀態 => queryAvailableSeatStatusList([起始車站ID], [車次ID])
 # 5-2.查詢票價 => queryODFare([[起始站ID]],[終點車站ID])
 # 　
 class THSRApi:
     THSR_Station_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/Station?$format=JSON"
     THSR_ODFare_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/ODFare/%s/to/%s?$format=JSON"
-    THSR_DailyTimetable_OD = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/OD/%s/to/%s/%s?$format=JSON"
+    THSR_DailyTimetable_OD_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/OD/%s/to/%s/%s?$format=JSON"
+    THSR_AvailableSeatStatus_List_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/AvailableSeatStatusList/%s?$format=JSON"
     # THSR_DailyTimetable = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Station/%s/%s?$format=JSON"
 
     # 查詢所有高鐵站的車站ID
@@ -32,13 +34,13 @@ class THSRApi:
             item['station_id'] = station_id
             result.append(item)
 
-        result = sorted(result, key=lambda k: k['station_id'], reverse=False)  # 依車站ID排序
+        result = sorted(result, key=lambda k: k['station_id'], reverse=False) #依車站ID排序
         print(result)
         return result
 
     # 查詢指定[起始車站ID][終點車站ID][日期]的站別時刻表資料
     def queryDailyTimetable_OD(self, StartStationId, DestinationStationId, TrainDate):
-        requestUrl = self.THSR_DailyTimetable_OD %(StartStationId, DestinationStationId, TrainDate)
+        requestUrl = self.THSR_DailyTimetable_OD_Url % (StartStationId, DestinationStationId, TrainDate)
         print(requestUrl)
         response = requests.get(requestUrl)
         jsonarray = json.loads(response.text)
@@ -83,6 +85,34 @@ class THSRApi:
 
         result = sorted(result, key=lambda k: k['price'], reverse=False)  #依價格排序
         print(result)
+        return result
+
+    # 查詢指定車站，指定車次的剩餘座位
+    def queryAvailableSeatStatusList(self, StationId, TrainId):
+        requestUrl = self.THSR_AvailableSeatStatus_List_Url % StationId
+        print(requestUrl)
+        response = requests.get(requestUrl)
+        jsonarray = json.loads(response.text)[0]['AvailableSeats']
+        result = []
+        for jsonobj in jsonarray:
+            if jsonobj['TrainNo'] == TrainId:
+                print(jsonobj['TrainNo'])
+                start_station = jsonobj['StationName']['Zh_tw']
+                for station in jsonobj['StopStations']:
+                    title = start_station + '->' + station['StationName']['Zh_tw']
+                    standard_seat_status = station['StandardSeatStatus']
+                    business_seat_status = station['BusinessSeatStatus']
+                    print('標題:' + title)
+                    print('標準席:' + standard_seat_status)
+                    print('商務席:' + business_seat_status)
+                    item = {}
+                    item['title'] = title #台北->台中
+                    item['standard_seat'] = self.getSeatAvailableString(standard_seat_status)
+                    item['business_seat'] = self.getSeatAvailableString(business_seat_status)
+                    result.append(item)
+
+        print(result)
+        print(result.__len__())
         return result
 
     #查詢回傳最近三天的日期
@@ -139,6 +169,15 @@ class THSRApi:
         # print(result)
         return result
 
+    def getSeatAvailableString(self, AvailableStatus):
+        # ['Available: 尚有座位' or 'Limited: 座位有限' or 'Full: 已無座位']
+        if AvailableStatus == 'Available':
+            return '尚有座位'
+        elif AvailableStatus == 'Limited':
+            return '座位有限'
+        elif AvailableStatus == 'Full':
+            return '已無座位'
+
     # 查詢指定[車站ID][日期]的站別時刻表資料
     # def queryDailyTimetable(self, StationId, TrainDate):
     #     requestUrl = self.THSR_DailyTimetable %(StationId, TrainDate)
@@ -153,5 +192,6 @@ obj = THSRApi()
 # obj.queryODFare('1040', '1000')
 # obj.qeuryLastestDate()
 # obj.queryDailyTimetable('1040', obj.qeuryLastestDate()[0]['datetime'])
-obj.queryDailyTimetable_OD('1040', '1000', obj.qeuryLastestDate()[0]['datetime'])
+# obj.queryDailyTimetable_OD('1040', '1000', obj.qeuryLastestDate()[0]['datetime'])
 # obj.compareTime('20:29', '%H:%M')
+obj.queryAvailableSeatStatusList('1040', '152')
