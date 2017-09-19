@@ -61,7 +61,7 @@ class THSRApi:
             return None
 
         fare = self.queryODFare(start_station_id, destination_station_id);#先查票價資料
-        print(request_url)
+        # print(request_url)
         response = requests.get(request_url)
 
         jsonarray = json.loads(response.text)
@@ -75,28 +75,10 @@ class THSRApi:
             if  False == self.isTimeBiggerThanNow(TrainDate, '%Y-%m-%d', True):
                 #篩選掉出發時間小於現在時間的資料
                 if self.isTimeBiggerThanNow(taindate, '%H:%M', False):
-                    title = jsonObj['OriginStopTime']['StationName']['Zh_tw'] + '->' + jsonObj['DestinationStopTime']['StationName']['Zh_tw']
-                    train_id = jsonObj['DailyTrainInfo']['TrainNo']
-                    departure_time = jsonObj['OriginStopTime']['ArrivalTime']
-                    arrival_time = jsonObj['DestinationStopTime']['ArrivalTime']
-                    item = {}
-                    item['title'] = title #標題
-                    item['train_id'] = train_id #車次ID
-                    item['departure_time'] = departure_time #出發時間
-                    item['arrival_time'] = arrival_time #抵達時間
-                    results.append(item)
+                    results.append(self.parseODTableItem(jsonObj))
             else:
                 #不篩選掉出發時間小於現在時間的資料
-                title = jsonObj['OriginStopTime']['StationName']['Zh_tw'] + '->' + jsonObj['DestinationStopTime']['StationName']['Zh_tw']
-                train_id = jsonObj['DailyTrainInfo']['TrainNo']
-                departure_time = jsonObj['OriginStopTime']['ArrivalTime']
-                arrival_time = jsonObj['DestinationStopTime']['ArrivalTime']
-                item = {}
-                item['title'] = title  # 標題
-                item['train_id'] = train_id  # 車次ID
-                item['departure_time'] = departure_time  # 出發時間
-                item['arrival_time'] = arrival_time  # 抵達時間
-                results.append(item)
+                results.append(self.parseODTableItem(jsonObj))
 
         results = sorted(results, key=lambda k: k['departure_time'], reverse=False)  # 依出發時間排序
 
@@ -104,8 +86,21 @@ class THSRApi:
             result['fare'] = fare
             result['trains_data'] = results
 
-        print(result)
+        # print(result)
         return result
+
+    def parseODTableItem(self, json_obj):
+        title = json_obj['OriginStopTime']['StationName']['Zh_tw'] + '->' + \
+                json_obj['DestinationStopTime']['StationName']['Zh_tw']
+        train_id = json_obj['DailyTrainInfo']['TrainNo']
+        departure_time = json_obj['OriginStopTime']['ArrivalTime']
+        arrival_time = json_obj['DestinationStopTime']['ArrivalTime']
+        item = {}
+        item['title'] = title  # 標題
+        item['train_id'] = train_id  # 車次ID
+        item['departure_time'] = departure_time  # 出發時間
+        item['arrival_time'] = arrival_time  # 抵達時間
+        return item
 
     #查詢[起始站ID]和[終點站ID]的票價
     def queryODFare(self, OriginStationID, DestinationStationID):
@@ -129,23 +124,31 @@ class THSRApi:
         return result
 
     # 查詢指定車站，指定車次的剩餘座位
-    def queryAvailableSeatStatusList(self, StationId, TrainId):
-        requestUrl = self.THSR_AvailableSeatStatus_List_Url % StationId
-        print(requestUrl)
+    def queryAvailableSeatStatusList(self, station, train_id):
+
+        station_id = station;
+        if False == station.isdigit():
+            station_id = self.findStationIdFromStationName(station_id)
+
+        if station_id == None:
+            return None
+
+        requestUrl = self.THSR_AvailableSeatStatus_List_Url % station_id
+        # print(requestUrl)
         response = requests.get(requestUrl)
         jsonarray = json.loads(response.text)[0]['AvailableSeats']
         result = []
         for jsonobj in jsonarray:
-            if jsonobj['TrainNo'] == TrainId:
-                print(jsonobj['TrainNo'])
+            if jsonobj['TrainNo'] == train_id:
+                # print(jsonobj['TrainNo'])
                 start_station = jsonobj['StationName']['Zh_tw']
                 for station in jsonobj['StopStations']:
                     title = start_station + '->' + station['StationName']['Zh_tw']
                     standard_seat_status = station['StandardSeatStatus']
                     business_seat_status = station['BusinessSeatStatus']
-                    print('標題:' + title)
-                    print('標準席:' + standard_seat_status)
-                    print('商務席:' + business_seat_status)
+                    # print('標題:' + title)
+                    # print('標準席:' + standard_seat_status)
+                    # print('商務席:' + business_seat_status)
                     item = {}
                     item['title'] = title #台北->台中
                     item['standard_seat'] = self.getSeatAvailableString(standard_seat_status)
@@ -157,9 +160,9 @@ class THSRApi:
         return result
 
     def queryNews(self):
-        print(self.THSR_News_Url)
+        # print(self.THSR_News_Url)
         response = requests.get(self.THSR_News_Url)
-        print(response.text)
+        # print(response.text)
 
     #查詢回傳最近三天的日期
     # result[0]今天
@@ -213,18 +216,18 @@ class THSRApi:
         if is_date:
             compareTime = datetime.datetime.strptime(time, timeformat).date()
             now = datetime.datetime.now(pytz.timezone('Asia/Taipei')).date()
-            print('compareTime:' + compareTime.strftime('%Y-%m-%d'))
-            print('now:' + now.strftime('%Y-%m-%d'))
+            # print('compareTime:' + compareTime.strftime('%Y-%m-%d'))
+            # print('now:' + now.strftime('%Y-%m-%d'))
             result = compareTime > now
-            print(result)
+            # print(result)
             return result
         else:
             compareTime = datetime.datetime.strptime(time, timeformat)
             now = datetime.datetime.now(pytz.timezone('Asia/Taipei'))
-            print('compareTime:' + compareTime.strftime('%H:%M'))
-            print('now:' + now.strftime('%H:%M'))
+            # print('compareTime:' + compareTime.strftime('%H:%M'))
+            # print('now:' + now.strftime('%H:%M'))
             result = compareTime.time() > now.time()
-            print(result)
+            # print(result)
             return result
 
     def getSeatAvailableString(self, AvailableStatus):
@@ -258,11 +261,11 @@ class THSRApi:
 
 
 #================ 測試區 ================
-obj = THSRApi()
-obj.queryAllStation()
+# obj = THSRApi()
+# obj.queryAllStation()
 # obj.queryODFare('1040', '1000')
 # obj.qeuryLastestDate()
-# obj.queryDailyTimetable_OD('彰化', '台中', obj.qeuryLastestDate()[1])
+# obj.queryDailyTimetable_OD('台中', '台北', obj.qeuryLastestDate()[1])
 # obj.compareTime('20:29', '%H:%M')
-# obj.queryAvailableSeatStatusList('1040', '152')
+# obj.queryAvailableSeatStatusList('台中', '502')
 # obj.queryNews()
