@@ -35,6 +35,8 @@ from getXVideo import getXvideos
 
 from youtube import youtube
 
+from THSRApi import THSRApi
+
 from random import randint
 
 from linebot import (
@@ -115,6 +117,16 @@ class LineGW:
     mXIndex = 0
 
     mXName = ""
+
+    # 高鐵
+    mTHSRApiObj = None;
+    mTHSRStep = 0;
+    mTHSRallStation  = []
+    mTHSRallStationName = []
+    mTHSRStartStationName = ''
+    mTHSRArriveStationName = ''
+    mTHSRDate = ''
+
     def __init__(self, port):
         global logger
         logger.info("Start server {0} port ".format(port))
@@ -141,8 +153,6 @@ class LineGW:
         @app.route('/gw/linecallback', methods=['GET'])
         def verify():
             return 'OK', 200
-
-
 
         @app.route("/gw/linecallback", methods=['POST'])
         def callback():
@@ -175,6 +185,8 @@ class LineGW:
             text = event.message.text
             send_text = True
             check_user = True
+
+            checkTHSR(event,text)
 
             if text.startswith("#"):
                 text = text.replace("#", "")
@@ -284,7 +296,147 @@ class LineGW:
 
             fuzzySearch(event,text)
 
+        def checkTHSR(event,text):
+            if text.startswith("$"):
+                text = text.replace("$", "")
 
+                if text == '高鐵' or  text == '重置':
+                    self.mTHSRApiObj = None
+                    self.mTHSRStep = 0;
+                    self.mTHSRallStation = []
+                    self.mTHSRallStationName = []
+                    self.mTHSRStartStationName = ''
+                    self.mTHSRArriveStationName = ''
+                    self.mTHSRDate = ''
+                if self.mTHSRApiObj  == None:
+                    self.mTHSRApiObj = THSRApi()
+                if len(self.mTHSRallStation) == 0:
+                    self.mTHSRallStation = self.mTHSRApiObj.queryAllStation()
+                    for i in range(0, len(self.mTHSRallStation)):
+                        self.mTHSRallStationName.append(self.mTHSRallStation[i]['station_name'])
+
+                carousel_template_all = []
+                ObjArray = []
+                actions = []
+                count = 0;
+
+                if text in self.mTHSRallStationName and (self.mTHSRStep == 0 or self.mTHSRStep == 1):
+                    if self.mTHSRStep == 0:
+                        self.mTHSRallStartStationName = text
+                    elif self.mTHSRStep == 1:
+                        self.mTHSRallArriveStationName = text
+                    self.mTHSRStep += 1
+                elif self.mTHSRStep == 2:
+                    try:
+                        datetime.datetime.strptime(text, '%Y-%m-%d')
+                        self.mTHSRStep += 1
+                        self.mTHSRDate = text
+                    except ValueError:
+                        text = TextSendMessage(text="請檢查日期格式 (EX:2017-01-01)")
+                        self.line_bot_api.reply_message(event.reply_token, text)
+                        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+
+                if self.mTHSRStep == 0 or self.mTHSRStep == 1:
+                    title = ''
+                    if self.mTHSRStep == 0:
+                        title = '請選擇出發車站'
+                    if self.mTHSRStep == 1:
+                        title = '請選擇到達車站'
+
+                    for i in range(0, len(self.mTHSRallStation)):
+                        actions.append(MessageTemplateAction(
+                            label=self.mTHSRallStation[i]['station_name'],
+                            text='$' + self.mTHSRallStation[i]['station_name']
+                        ))
+                        if (i + 1) % 3 == 0 and i != 0:
+                            count = count + 1
+                            if count >= 5:
+                                break
+                            carousel_template_all.append(
+                                CarouselColumn(
+                                    text=title,
+                                    actions=actions
+                                ))
+                            actions = []
+                            continue
+
+                    carousel = CarouselTemplate(columns=carousel_template_all)
+                    ObjArray.append(TemplateSendMessage(alt_text='請在您的手機上觀看相關訊息', template=carousel))
+                    if len(carousel_template_all) == 0:
+                        text = TextSendMessage(text="查無資料")
+                        self.line_bot_api.reply_message(event.reply_token, text)
+                        return
+
+                    self.line_bot_api.reply_message(event.reply_token, ObjArray)
+                    return
+
+                elif self.mTHSRStep == 2:
+                    date = self.mTHSRApiObj.qeuryLastestDate()
+                    actions = []
+
+                    for i in range(0, len(date)):
+                        actions.append(MessageTemplateAction(
+                            label=date[i],
+                            text='$' + date[i]
+                        ))
+
+                    carousel_template_all.append(
+                        CarouselColumn(
+                            text='請選擇查詢日期',
+                            actions=actions
+                        ))
+
+                    carousel = CarouselTemplate(columns=carousel_template_all)
+                    ObjArray.append(TemplateSendMessage(alt_text='請在您的手機上觀看相關訊息', template=carousel))
+                    if len(carousel_template_all) == 0:
+                        text = TextSendMessage(text="查無資料")
+                        self.line_bot_api.reply_message(event.reply_token, text)
+                        return
+
+                    self.line_bot_api.reply_message(event.reply_token, ObjArray)
+                    return
+                elif self.mTHSRStep == 3:
+                    try:
+                        print(self.mTHSRallStartStationName,self.mTHSRallArriveStationName,self.mTHSRDate)
+                        dailyObj = self.mTHSRApiObj.queryDailyTimetable_OD(self.mTHSRallStartStationName,self.mTHSRallArriveStationName, self.mTHSRDate)
+                        trains_data = dailyObj['trains_data']
+                        fare = dailyObj['fare']
+                        msg = ''
+                        if trains_data and len(trains_data) == 0:
+                            text = TextSendMessage(text="查無資料")
+                            self.line_bot_api.reply_message(event.reply_token, text)
+                            self.mTHSRStep = 0;
+                            self.mTHSRallStation = []
+                            self.mTHSRallStationName = []
+                            self.mTHSRStartStationName = ''
+                            self.mTHSRArriveStationName = ''
+                            self.mTHSRDate = ''
+                            return
+                        else:
+                            count = 0
+                            for item in trains_data:
+                                if count==0:
+                                    msg +=self.mTHSRDate+"  "+item['title']+"\n"
+                                    count+=1
+
+                                msg+="車次:"+item['train_id']+"    "+item['departure_time']+'->'+item['arrival_time']+"\n"
+                            msg +="票價:"
+                            if fare and len(fare)!=0:
+                                for item in fare:
+                                    msg+=item['ticket_name']+':'+str(item['price'])+'    '
+                            text = TextSendMessage(text=msg)
+                            self.line_bot_api.reply_message(event.reply_token, text)
+                            return
+                    except:
+                        text = TextSendMessage(text=self.mTHSRDate+"    "+self.mTHSRStartStationName+"->"+self.mTHSRArriveStationName+"\n"+"查無資料")
+                        self.line_bot_api.reply_message(event.reply_token, text)
+                        self.mTHSRStep = 0;
+                        self.mTHSRallStation = []
+                        self.mTHSRallStationName = []
+                        self.mTHSRStartStationName = ''
+                        self.mTHSRArriveStationName = ''
+                        self.mTHSRDate = ''
+                        return
         def searchX(event):
 
             ObjArray = []
