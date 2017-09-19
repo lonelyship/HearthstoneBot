@@ -17,6 +17,7 @@ class THSRApi:
     THSR_ODFare_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/ODFare/%s/to/%s?$format=JSON"
     THSR_DailyTimetable_OD_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/OD/%s/to/%s/%s?$format=JSON"
     THSR_AvailableSeatStatus_List_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/AvailableSeatStatusList/%s?$format=JSON"
+    THSR_News_Url = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/News?$top=5&$format=JSON"
     # THSR_DailyTimetable = "http://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Station/%s/%s?$format=JSON"
 
     station_map = {}#暫存所有車站
@@ -37,7 +38,7 @@ class THSRApi:
 
         result = sorted(result, key=lambda k: k['station_id'], reverse=False) #依車站ID排序
 
-        self.station_map = result
+        self.station_map = self.parseStationJsonToMap(result)
 
         print(result)
         return result
@@ -104,8 +105,6 @@ class THSRApi:
             for fare in jsonArrayFares:
                 ticket_name = fare['TicketType']
                 price = fare['Price']
-                print(ticket_name)
-                print(price)
                 item = {}
                 item['ticket_name'] = ticket_name
                 item['price'] = price
@@ -142,6 +141,11 @@ class THSRApi:
         print(result)
         print(result.__len__())
         return result
+
+    def queryNews(self):
+        print(self.THSR_News_Url)
+        response = requests.get(self.THSR_News_Url)
+        print(response.text)
 
     #查詢回傳最近三天的日期
     # result[0]今天
@@ -208,11 +212,17 @@ class THSRApi:
         elif AvailableStatus == 'Full':
             return '已無座位'
 
+    # 將車站的json轉成map
+    def parseStationJsonToMap(self, station_json_array):
+        map = {}
+        for json in station_json_array:
+            map[json['station_name']] = json['station_id']
+        return map
+
     # 依車站名稱找車站ID
     def findStationIdFromStationName(self, station_name):
-        for station in self.station_map:
-            if station['station_name'] == station_name:
-                return station['station_id']
+        if station_name in self.station_map:
+            return self.station_map[station_name]
         return None
 
     # 查詢指定[車站ID][日期]的站別時刻表資料
@@ -228,6 +238,7 @@ class THSRApi:
 # obj.queryAllStation()
 # obj.queryODFare('1040', '1000')
 # obj.qeuryLastestDate()
-# obj.queryDailyTimetable_OD('彰化', '台北', obj.qeuryLastestDate()[0])
+# obj.queryDailyTimetable_OD('彰化', '台中', obj.qeuryLastestDate()[0])
 # obj.compareTime('20:29', '%H:%M')
 # obj.queryAvailableSeatStatusList('1040', '152')
+# obj.queryNews()
