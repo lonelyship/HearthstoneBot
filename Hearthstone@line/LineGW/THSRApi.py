@@ -23,7 +23,7 @@ class THSRApi:
 
     # 查詢所有高鐵站的車站ID
     def queryAllStation(self):
-        print(self.THSR_Station_Url)
+        # print(self.THSR_Station_Url)
         response = requests.get(self.THSR_Station_Url)
         jsonarray = json.loads(response.text)
         result = []
@@ -39,7 +39,7 @@ class THSRApi:
 
         self.station_map = result
 
-        print(result)
+        # print(result)
         return result
 
     # 查詢指定[起始車站ID][終點車站ID][日期]的站別時刻表資料及票價資料
@@ -56,11 +56,11 @@ class THSRApi:
         if start_station_id != None and destination_station_id != None:
             request_url = self.THSR_DailyTimetable_OD_Url % (start_station_id, destination_station_id, TrainDate)
         else:
-            print('找不到ID')
+            # print('找不到ID')
             return None
 
         fare = self.queryODFare(start_station_id, destination_station_id);#先查票價資料
-        print(request_url)
+        # print(request_url)
         response = requests.get(request_url)
 
         jsonarray = json.loads(response.text)
@@ -89,13 +89,13 @@ class THSRApi:
             result['fare'] = fare
             result['trains_data'] = results
 
-        print(result)
+        # print(result)
         return result
 
     #查詢[起始站ID]和[終點站ID]的票價
     def queryODFare(self, OriginStationID, DestinationStationID):
         requestUrl = self.THSR_ODFare_Url %(OriginStationID,DestinationStationID)
-        print(requestUrl)
+        # print(requestUrl)
         r = requests.get(requestUrl)
         jsonarray = json.loads(r.text)
         result = []
@@ -104,15 +104,15 @@ class THSRApi:
             for fare in jsonArrayFares:
                 ticket_name = fare['TicketType']
                 price = fare['Price']
-                print(ticket_name)
-                print(price)
+                # print(ticket_name)
+                # print(price)
                 item = {}
                 item['ticket_name'] = ticket_name
                 item['price'] = price
                 result.append(item)
 
         result = sorted(result, key=lambda k: k['price'], reverse=False)  #依價格排序
-        print(result)
+        # print(result)
         return result
 
     # 查詢指定車站，指定車次的剩餘座位
@@ -138,9 +138,9 @@ class THSRApi:
                     item['standard_seat'] = self.getSeatAvailableString(standard_seat_status)
                     item['business_seat'] = self.getSeatAvailableString(business_seat_status)
                     result.append(item)
-
-        print(result)
-        print(result.__len__())
+        #
+        # print(result)
+        # print(result.__len__())
         return result
 
     #查詢回傳最近三天的日期
@@ -173,7 +173,7 @@ class THSRApi:
         # for day in result:
         #     print(day['datetime'])
 
-        print(result)
+        # print(result)
 
         return result
 
