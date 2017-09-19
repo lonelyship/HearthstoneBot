@@ -126,24 +126,26 @@ class THSRApi:
         # 取得台灣時區的時間 方法一
         dtToday = datetime.datetime.now(pytz.timezone('Asia/Taipei'))
         # print(dtToday.strftime('%Y-%m-%d %H:%M'))
-        jsonToday = {};
-        jsonToday['datetime'] = dtToday.strftime('%Y-%m-%d')
-        result.append(jsonToday)
+        # jsonToday = {};
+        # jsonToday['datetime'] = dtToday.strftime('%Y-%m-%d')
+        result.append(dtToday.strftime('%Y-%m-%d'))
 
         dtTomorrow = dtToday + timedelta(days = 1)
         # print(dtTomorrow.strftime('%Y-%m-%d %H:%M'))
-        jsonTomorrow = {};
-        jsonTomorrow['datetime'] = dtTomorrow.strftime('%Y-%m-%d')
-        result.append(jsonTomorrow)
+        # jsonTomorrow = {};
+        # jsonTomorrow['datetime'] = dtTomorrow.strftime('%Y-%m-%d')
+        result.append(dtTomorrow.strftime('%Y-%m-%d'))
 
         dtPostnatal = dtToday + timedelta(days = 2)
         # print(dtPostnatal.strftime('%Y-%m-%d %H:%M'))
-        jsonPostnatal = {};
-        jsonPostnatal['datetime'] = dtPostnatal.strftime('%Y-%m-%d')
-        result.append(jsonPostnatal)
+        # jsonPostnatal = {};
+        # jsonPostnatal['datetime'] = dtPostnatal.strftime('%Y-%m-%d')
+        result.append(dtPostnatal.strftime('%Y-%m-%d'))
 
-        for day in result:
-            print(day['datetime'])
+        # for day in result:
+        #     print(day['datetime'])
+
+        print(result)
 
         return result
 
@@ -190,8 +192,8 @@ class THSRApi:
 obj = THSRApi()
 # obj.queryAllStation()
 # obj.queryODFare('1040', '1000')
-# obj.qeuryLastestDate()
+obj.qeuryLastestDate()
 # obj.queryDailyTimetable('1040', obj.qeuryLastestDate()[0]['datetime'])
 # obj.queryDailyTimetable_OD('1040', '1000', obj.qeuryLastestDate()[0]['datetime'])
 # obj.compareTime('20:29', '%H:%M')
-obj.queryAvailableSeatStatusList('1040', '152')
+# obj.queryAvailableSeatStatusList('1040', '152')
